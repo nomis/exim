@@ -304,7 +304,8 @@ if (tblock->retry_use_local_part == TRUE_UNSET)
 /* Set the default port according to the protocol */
 
 if (ob->port == NULL)
-  ob->port = (strcmpic(ob->protocol, US"lmtp") == 0)? US"lmtp" : US"smtp";
+  ob->port = (strcmpic(ob->protocol, US"lmtp") == 0)? US"lmtp" :
+    (strcmpic(ob->protocol, US"smtps") == 0)? US"smtps" : US"smtp";
 
 /* Set up the setup entry point, to be called before subprocesses for this
 transport. */
@@ -845,6 +846,7 @@ time_t start_delivery_time = time(NULL);
 smtp_transport_options_block *ob =
   (smtp_transport_options_block *)(tblock->options_block);
 BOOL lmtp = strcmpic(ob->protocol, US"lmtp") == 0;
+BOOL smtps = strcmpic(ob->protocol, US"smtps") == 0;
 BOOL ok = FALSE;
 BOOL send_rset = TRUE;
 BOOL send_quit = TRUE;
@@ -915,6 +917,14 @@ if (ob->authenticated_sender != NULL)
   else if (new[0] != 0) local_authenticated_sender = new;
   }
 
+#ifndef SUPPORT_TLS
+if (smtps)
+  {
+    set_errno(addrlist, 0, US"TLS support not available", DEFER, FALSE);
+    return ERROR;
+  }
+#endif
+
 /* Make a connection to the host if this isn't a continued delivery, and handle
 the initial interaction and HELO/EHLO/LHLO. Connect timeout errors are handled
 specially so they can be identified for retries. */
@@ -937,6 +947,16 @@ if (continue_hostname == NULL)
   delayed till here so that $sending_interface and $sending_port are set. */
 
   helo_data = expand_string(ob->helo_data);
+
+  #ifdef SUPPORT_TLS
+  if (smtps)
+    {
+    tls_offered = TRUE;
+    suppress_tls = FALSE;
+    ob->tls_tempfail_tryclear = FALSE;
+    goto START_TLS;
+    }
+  #endif
 
   /* The first thing is to wait for an initial OK response. The dreaded "goto"
   is nevertheless a reasonably clean way of programming this kind of logic,
@@ -1087,6 +1107,7 @@ if (tls_offered && !suppress_tls &&
   /* STARTTLS accepted: try to negotiate a TLS session. */
 
   else
+  START_TLS:
     {
     int rc = tls_client_start(inblock.sock,
       host,
@@ -1146,6 +1167,13 @@ if (tls_active >= 0)
       yield = DEFER;
       goto SEND_QUIT;
       }
+    }
+
+  /* For SMTPS we need to wait for the initial OK response. */
+  if (smtps)
+    {
+    if (!smtp_read_response(&inblock, buffer, sizeof(buffer), '2',
+      ob->command_timeout)) goto RESPONSE_FAILED;
     }
 
   if (smtp_write_command(&outblock, FALSE, "%s %s\r\n", lmtp? "LHLO" : "EHLO",
@@ -1989,10 +2017,17 @@ if (completed_address && ok && send_quit)
       #ifdef SUPPORT_TLS
       if (tls_active >= 0)
         {
-        tls_close(TRUE);
-        ok = smtp_write_command(&outblock,FALSE,"EHLO %s\r\n",helo_data) >= 0 &&
-             smtp_read_response(&inblock, buffer, sizeof(buffer), '2',
-               ob->command_timeout);
+        if (smtps)
+          {
+          ok = FALSE;
+          }
+        else
+          {
+          tls_close(TRUE);
+          ok = smtp_write_command(&outblock,FALSE,"EHLO %s\r\n",helo_data) >= 0 &&
+               smtp_read_response(&inblock, buffer, sizeof(buffer), '2',
+                 ob->command_timeout);
+          }
         }
       #endif
 

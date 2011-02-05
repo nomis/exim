@@ -22056,6 +22056,10 @@ protocol (RFC 2033) instead of SMTP. This protocol is sometimes used for local
 deliveries into closed message stores. Exim also has support for running LMTP
 over a pipe to a local process &-- see chapter &<<CHAPLMTP>>&.
 
+If this option is set to &"smtps"&, the default vaule for the &%port%& option
+changes to &"smtps"&, and the transport operates the (deprecated) SMTPS
+protocol instead of SMTP.
+
 
 .option retry_include_ip_address smtp boolean true
 Exim normally includes both the host name and the IP address in the key it
