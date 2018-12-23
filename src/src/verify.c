@@ -2386,13 +2386,13 @@ The original proposed patch did the former, but I have chosen to do the latter,
 because (a) it requires no memory and (b) will use fewer resources when there
 are many addresses in To: and/or Cc: and only one or two envelope recipients.
 
-Arguments:   none
+Arguments:   case_sensitive   true if case sensitive matching should be used
 Returns:     OK    if there are no blind recipients
              FAIL  if there is at least one blind recipient
 */
 
 int
-verify_check_notblind(void)
+verify_check_notblind(BOOL case_sensitive)
 {
 int i;
 for (i = 0; i < recipients_count; i++)
@@ -2438,8 +2438,10 @@ for (i = 0; i < recipients_count; i++)
 
       if (recipient != NULL && domain != 0)
         {
-        found = Ustrncmp(recipient, address, domain) == 0 &&
-                strcmpic(recipient + domain, address + domain) == 0;
+        found = (case_sensitive?
+                    Ustrncmp(recipient, address, domain) == 0
+                    : strncmpic(recipient, address, domain) == 0) &&
+                  strcmpic(recipient + domain, address + domain) == 0;
         if (found) break;
         }
 
