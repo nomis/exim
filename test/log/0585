@@ -14,22 +14,18 @@
 1999-03-02 09:44:33 recipient_verify_failure=recipient
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Previous (cached) callout verification failure
 1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <deny-rcpt@localhost>\nPrevious (cached) callout verification failure
-1999-03-02 09:44:33 H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 1
 1999-03-02 09:44:33 acl_m_verify=defer
 1999-03-02 09:44:33 recipient_verify_failure=recipient
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 1
 1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-rcpt@localhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 1
-1999-03-02 09:44:33 H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 2
 1999-03-02 09:44:33 acl_m_verify=defer
 1999-03-02 09:44:33 recipient_verify_failure=recipient
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 2
 1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-rcpt@localhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 2
-1999-03-02 09:44:33 H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
 1999-03-02 09:44:33 acl_m_verify=defer
 1999-03-02 09:44:33 recipient_verify_failure=connect
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
 1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <fail-connect@otherhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
-1999-03-02 09:44:33 H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
 1999-03-02 09:44:33 acl_m_verify=defer
 1999-03-02 09:44:33 recipient_verify_failure=connect
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
@@ -38,17 +34,14 @@
 1999-03-02 09:44:33 recipient_verify_failure=connect
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Recipient verify callout failed: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 500 REJECTED
 1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <deny-connect@otherhost10>\n127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 500 REJECTED
-1999-03-02 09:44:33 H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
 1999-03-02 09:44:33 acl_m_verify=defer
 1999-03-02 09:44:33 recipient_verify_failure=connect
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
 1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <deny-connect@otherhost10>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
-1999-03-02 09:44:33 H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 1
 1999-03-02 09:44:33 acl_m_verify=defer
 1999-03-02 09:44:33 recipient_verify_failure=connect
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 1
 1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-connect@otherhost11>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 1
-1999-03-02 09:44:33 H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 2
 1999-03-02 09:44:33 acl_m_verify=defer
 1999-03-02 09:44:33 recipient_verify_failure=connect
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 2
@@ -57,17 +50,14 @@
 1999-03-02 09:44:33 recipient_verify_failure=connect
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Recipient verify callout failed: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 500 REJECTED B
 1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <deny-ehlo@otherhost12>\n127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 500 REJECTED B
-1999-03-02 09:44:33 H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
 1999-03-02 09:44:33 acl_m_verify=defer
 1999-03-02 09:44:33 recipient_verify_failure=connect
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
 1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <deny-ehlo@otherhost12>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
-1999-03-02 09:44:33 H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 1B
 1999-03-02 09:44:33 acl_m_verify=defer
 1999-03-02 09:44:33 recipient_verify_failure=connect
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 1B
 1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-ehlo@otherhost13>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 1B
-1999-03-02 09:44:33 H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 2B
 1999-03-02 09:44:33 acl_m_verify=defer
 1999-03-02 09:44:33 recipient_verify_failure=connect
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 2B
@@ -80,12 +70,10 @@
 1999-03-02 09:44:33 recipient_verify_failure=mail
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Previous (cached) callout result reused
 1999-03-02 09:44:33 recipient_verify_failure_user_message=Callback setup failed while verifying <deny-mail@otherhost20>\n(result of an earlier callout reused).
-1999-03-02 09:44:33 H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 1
 1999-03-02 09:44:33 acl_m_verify=defer
 1999-03-02 09:44:33 recipient_verify_failure=mail
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 1
 1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-mail@otherhost40>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 1
-1999-03-02 09:44:33 H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 2
 1999-03-02 09:44:33 acl_m_verify=defer
 1999-03-02 09:44:33 recipient_verify_failure=mail
 1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 2

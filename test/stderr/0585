@@ -155,8 +155,6 @@ interface=NULL port=1224
 wrote callout cache domain record for localhost:
   result=1 postmaster=0 random=0
 LOG: MAIN
-  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 1
-LOG: MAIN
   acl_m_verify=defer
 LOG: MAIN
   recipient_verify_failure=recipient
@@ -195,8 +193,6 @@ interface=NULL port=1224
 wrote callout cache domain record for localhost:
   result=1 postmaster=0 random=0
 LOG: MAIN
-  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 2
-LOG: MAIN
   acl_m_verify=defer
 LOG: MAIN
   recipient_verify_failure=recipient
@@ -225,8 +221,6 @@ interface=NULL port=1224
    SMTP(Connection refused)<<
    SMTP(close)>>
 LOG: MAIN
-  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
-LOG: MAIN
   acl_m_verify=defer
 LOG: MAIN
   recipient_verify_failure=connect
@@ -254,8 +248,6 @@ interface=NULL port=1224
  Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
    SMTP(Connection refused)<<
    SMTP(close)>>
-LOG: MAIN
-  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
 LOG: MAIN
   acl_m_verify=defer
 LOG: MAIN
@@ -314,8 +306,6 @@ interface=NULL port=1224
    SMTP(Connection refused)<<
    SMTP(close)>>
 LOG: MAIN
-  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
-LOG: MAIN
   acl_m_verify=defer
 LOG: MAIN
   recipient_verify_failure=connect
@@ -345,8 +335,6 @@ interface=NULL port=1224
    SMTP>> QUIT
    SMTP(close)>>
 LOG: MAIN
-  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 1
-LOG: MAIN
   acl_m_verify=defer
 LOG: MAIN
   recipient_verify_failure=connect
@@ -375,8 +363,6 @@ interface=NULL port=1224
    SMTP<< 400 TEMPORARILY REJECTED 2
    SMTP>> QUIT
    SMTP(close)>>
-LOG: MAIN
-  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 2
 LOG: MAIN
   acl_m_verify=defer
 LOG: MAIN
@@ -439,8 +425,6 @@ interface=NULL port=1224
    SMTP(Connection refused)<<
    SMTP(close)>>
 LOG: MAIN
-  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
-LOG: MAIN
   acl_m_verify=defer
 LOG: MAIN
   recipient_verify_failure=connect
@@ -474,8 +458,6 @@ interface=NULL port=1224
    SMTP>> QUIT
    SMTP(close)>>
 LOG: MAIN
-  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 1B
-LOG: MAIN
   acl_m_verify=defer
 LOG: MAIN
   recipient_verify_failure=connect
@@ -508,8 +490,6 @@ interface=NULL port=1224
    SMTP<< 400 TEMPORARILY REJECTED 2B
    SMTP>> QUIT
    SMTP(close)>>
-LOG: MAIN
-  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 2B
 LOG: MAIN
   acl_m_verify=defer
 LOG: MAIN
@@ -607,8 +587,6 @@ interface=NULL port=1224
 wrote callout cache domain record for otherhost40:
   result=1 postmaster=0 random=0
 LOG: MAIN
-  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 1
-LOG: MAIN
   acl_m_verify=defer
 LOG: MAIN
   recipient_verify_failure=mail
@@ -644,8 +622,6 @@ interface=NULL port=1224
    SMTP(close)>>
 wrote callout cache domain record for otherhost40:
   result=1 postmaster=0 random=0
-LOG: MAIN
-  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 2
 LOG: MAIN
   acl_m_verify=defer
 LOG: MAIN

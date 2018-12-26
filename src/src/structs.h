@@ -909,6 +909,7 @@ typedef struct acl_block {
   int			verb;
   int			srcline;
   const uschar *	srcfile;
+  int			flags;
 } acl_block;
 
 /* smtp transport calc outbound_ip */

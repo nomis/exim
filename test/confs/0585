@@ -27,6 +27,7 @@ begin acl
 
 check_sender:
   warn    hosts    = V4NET.0.0.1
+          control  = no_warn_skipped
           acl      = verify_recipient
 
   warn    hosts    = V4NET.0.0.0/24
