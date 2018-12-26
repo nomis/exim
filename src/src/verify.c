@@ -44,6 +44,63 @@ static uschar cutthrough_response(client_conn_ctx *, char, uschar **, int);
 
 
 /*************************************************
+*           Copy error to failure strings        *
+*************************************************/
+
+/* This function is used when a verify fails or defers, to update the message
+strings available to ACLs.
+
+Arguments:
+  is_recipient  this is a recipient address, otherwise it's a sender address
+  reason        the reason for failure
+  addr          the failing address item (for messages)
+
+Returns:      nothing
+*/
+
+static void
+set_failure_info(BOOL is_recipient, uschar *reason, address_item *addr)
+{
+uschar **failure_ptr = is_recipient ?
+  &recipient_verify_failure : &sender_verify_failure;
+uschar **failure_log_message_ptr = is_recipient ?
+  &recipient_verify_failure_log_message : &sender_verify_failure_log_message;
+uschar **failure_user_message_ptr = is_recipient ?
+  &recipient_verify_failure_user_message : &sender_verify_failure_user_message;
+
+*failure_ptr = reason;
+
+if (addr == NULL)
+  {
+  *failure_log_message_ptr = NULL;
+  *failure_user_message_ptr = NULL;
+  }
+else
+  {
+  *failure_log_message_ptr = addr->message;
+  if (addr->user_message == NULL)
+    {
+    *failure_user_message_ptr = NULL;
+    }
+  else
+    {
+    *failure_user_message_ptr = string_sprintf(
+      testflag(addr, af_verify_pmfail)?
+        "Postmaster verification failed while checking <%s>\n%s"
+        :
+      testflag(addr, af_verify_nsfail)?
+        "Callback setup failed while verifying <%s>\n%s"
+        :
+        "Verification failed for <%s>\n%s",
+      addr->address,
+      addr->user_message);
+    }
+  }
+}
+
+
+
+/*************************************************
 *          Retrieve a callout cache record       *
 *************************************************/
 
@@ -126,7 +183,7 @@ Return: TRUE if result found
 static BOOL
 cached_callout_lookup(address_item * addr, uschar * address_key,
   uschar * from_address, int * opt_ptr, uschar ** pm_ptr,
-  int * yield, uschar ** failure_ptr,
+  int * yield, uschar ** failure_reason,
   dbdata_callout_cache * new_domain_record, int * old_domain_res)
 {
 int options = *opt_ptr;
@@ -176,9 +233,10 @@ else
 	debug_printf("callout cache: domain gave initial rejection, or "
 	  "does not accept HELO or MAIL FROM:<>\n");
       setflag(addr, af_verify_nsfail);
+      addr->message = US"Previous (cached) callout result reused";
       addr->user_message = US"(result of an earlier callout reused).";
       *yield = FAIL;
-      *failure_ptr = US"mail";
+      *failure_reason = US"mail";
       dbfn_close(dbm_file);
       return TRUE;
       }
@@ -195,7 +253,7 @@ else
       case ccache_accept:
 	HDEBUG(D_verify)
 	  debug_printf("callout cache: domain accepts random addresses\n");
-	*failure_ptr = US"random";
+	*failure_reason = US"random";
 	dbfn_close(dbm_file);
 	return TRUE;     /* Default yield is OK */
 
@@ -229,8 +287,9 @@ else
 	  debug_printf("callout cache: domain does not accept "
 	    "RCPT TO:<postmaster@domain>\n");
 	*yield = FAIL;
-	*failure_ptr = US"postmaster";
+	*failure_reason = US"postmaster";
 	setflag(addr, af_verify_pmfail);
+	addr->message = US"Previous (cached) postmaster verification result reused";
 	addr->user_message = US"(result of earlier verification reused).";
 	dbfn_close(dbm_file);
 	return TRUE;
@@ -279,8 +338,9 @@ else
     {
     HDEBUG(D_verify)
       debug_printf("callout cache: address record is negative\n");
-    addr->user_message = US"Previous (cached) callout verification failure";
-    *failure_ptr = US"recipient";
+    addr->message = US"Previous (cached) callout verification failure";
+    addr->user_message = addr->message;
+    *failure_reason = US"recipient";
     *yield = FAIL;
     }
 
@@ -367,7 +427,7 @@ Return: TRUE for a definitive result for the recipient
 */
 static int
 cutthrough_multi(address_item * addr, host_item * host_list,
-  transport_feedback * tf, int * yield)
+  transport_feedback * tf, int * yield, uschar ** failure_reason)
 {
 BOOL done = FALSE;
 
@@ -440,6 +500,8 @@ if (addr->transport == cutthrough.addr.transport)
 	    if (*resp == 0)
 	      Ustrcpy(resp, US"connection dropped");
 
+	    *failure_reason = US"recipient";
+
 	    addr->message =
 	      string_sprintf("response to \"%s\" was: %s",
 		big_buffer, string_printing(resp));
@@ -510,8 +572,8 @@ uschar *address_key;
 uschar *from_address;
 uschar *random_local_part = NULL;
 const uschar *save_deliver_domain = deliver_domain;
-uschar **failure_ptr = options & vopt_is_recipient
-  ? &recipient_verify_failure : &sender_verify_failure;
+BOOL is_recipient = options & vopt_is_recipient;
+uschar *failure_reason = NULL;
 dbdata_callout_cache new_domain_record;
 dbdata_callout_cache_address new_address_record;
 time_t callout_start_time;
@@ -556,7 +618,7 @@ else
   }
 
 if (cached_callout_lookup(addr, address_key, from_address,
-      &options, &pm_mailfrom, &yield, failure_ptr,
+      &options, &pm_mailfrom, &yield, &failure_reason,
       &new_domain_record, &old_domain_cache_result))
   {
   cancel_cutthrough_connection(TRUE, US"cache-hit");
@@ -621,7 +683,7 @@ coding means skipping this whole loop and doing the append separately.  */
      && !random_local_part
      && !pm_mailfrom
      )
-    done = cutthrough_multi(addr, host_list, tf, &yield);
+    done = cutthrough_multi(addr, host_list, tf, &yield, &failure_reason);
 
   /* If we did not use a cached connection, make connections to the hosts
   and do real callouts. The list of hosts is passed in as an argument. */
@@ -711,6 +773,7 @@ tls_retry_connection:
     if (yield != OK)
       {
       errno = addr->basic_errno;
+      failure_reason = US"connect";
       transport_name = NULL;
       deliver_host = deliver_host_address = NULL;
       deliver_domain = save_deliver_domain;
@@ -760,6 +823,7 @@ tls_retry_connection:
 	 )
 	{
 	addr->message = errstr;
+	set_failure_info(is_recipient, NULL, addr);
 	errno = ERRNO_EXPANDFAIL;
 	setflag(addr, af_verify_nsfail);
 	done = FALSE;
@@ -808,7 +872,7 @@ tls_retry_connection:
 	    new_domain_record.random_result = ccache_accept;
 	    yield = OK;		/* Only usable verify result we can return */
 	    done = TRUE;
-	    *failure_ptr = US"random";
+	    failure_reason = US"random";
 	    goto no_conn;
 	  case FAIL:		/* rejected: the preferred result */
 	    new_domain_record.random_result = ccache_reject;
@@ -844,6 +908,7 @@ tls_retry_connection:
 	    sx->completed_addr = FALSE;
 	    goto tls_retry_connection;
 	  case DEFER:		/* 4xx response to random */
+	    failure_reason = US"random";
 	    break;		/* Just to be clear. ccache_unknown, !done. */
 	  }
 
@@ -876,15 +941,16 @@ tls_retry_connection:
 				      break;
 		    case FAIL:	    done = TRUE;
 				      yield = FAIL;
-				      *failure_ptr = US"recipient";
+				      failure_reason = US"recipient";
 				      new_address_record.result = ccache_reject;
 				      break;
-		    default:	    break;
+		    default:	      failure_reason = US"recipient";
+				      break;
 		    }
 		  break;
 
 	case -1:				/* MAIL response error */
-		  *failure_ptr = US"mail";
+		  failure_reason = US"mail";
 		  if (errno == 0 && sx->buffer[0] == '5')
 		    {
 		    setflag(addr, af_verify_nsfail);
@@ -950,11 +1016,14 @@ tls_retry_connection:
 
 	if (done)
 	  new_domain_record.postmaster_result = ccache_accept;
-	else if (errno == 0 && sx->buffer[0] == '5')
+	else
 	  {
-	  *failure_ptr = US"postmaster";
-	  setflag(addr, af_verify_pmfail);
-	  new_domain_record.postmaster_result = ccache_reject;
+	  failure_reason = US"postmaster";
+	  if (errno == 0 && sx->buffer[0] == '5')
+	    {
+	    setflag(addr, af_verify_pmfail);
+	    new_domain_record.postmaster_result = ccache_reject;
+	    }
 	  }
 
 	addr->address = main_address;
@@ -987,6 +1056,7 @@ no_conn:
 	addr->user_message = acl_where == ACL_WHERE_RCPT
 	  ? US"533 no support for internationalised mailbox name"
 	  : US"550 mailbox unavailable";
+	set_failure_info(is_recipient, NULL, addr);
 	yield = FAIL;
 	done = TRUE;
 	}
@@ -996,6 +1066,7 @@ no_conn:
 	sx->send_quit = FALSE;
 	break;
 
+      case ERRNO_MAIL4XX:
       case 0:
 	if (*sx->buffer == 0) Ustrcpy(sx->buffer, US"connection dropped");
 
@@ -1152,8 +1223,12 @@ no_conn:
       }
 
     if (!done || yield != OK)
-      addr->message = string_sprintf("%s [%s] : %s", host->name, host->address,
+      {
+      addr->message = string_sprintf("%s [%s] : %s",
+				    host->name, host->address,
 				    addr->message);
+      addr->user_message = string_copy(addr->message);
+      }
     }    /* Loop through all hosts, while !done */
   }
 
@@ -1167,8 +1242,8 @@ if (!(options & vopt_callout_no_cache))
     done, &new_address_record, address_key);
 
 /* Failure to connect to any host, or any response other than 2xx or 5xx is a
-temporary error. If there was only one host, and a response was received, leave
-it alone if supplying details. Otherwise, give a generic response. */
+temporary error. If a response was received, leave it alone. Otherwise, give a
+generic response. */
 
 if (!done)
   {
@@ -1176,29 +1251,39 @@ if (!done)
     options & vopt_is_recipient ? "recipient" : "sender");
   yield = DEFER;
 
-  addr->message = host_list->next || !addr->message
+  addr->message = !addr->message
     ? dullmsg : string_sprintf("%s: %s", dullmsg, addr->message);
 
   addr->user_message = smtp_return_error_details
-    ? string_sprintf("%s for <%s>.\n"
+    ? string_sprintf("%s for <%s>.\n%s\n"
       "The mail server(s) for the domain may be temporarily unreachable, or\n"
       "they may be permanently unreachable from this server. In the latter case,\n%s",
-      dullmsg, addr->address,
+      dullmsg, addr->address, !addr->user_message ? US"" : addr->user_message,
       options & vopt_is_recipient
 	? "the address will never be accepted."
         : "you need to change the address or create an MX record for its domain\n"
 	  "if it is supposed to be generally accessible from the Internet.\n"
 	  "Talk to your mail administrator for details.")
-    : dullmsg;
+    : (!addr->user_message ? dullmsg
+       : string_sprintf("%s: %s", dullmsg, addr->user_message));
 
   /* Force a specific error code */
 
   addr->basic_errno = ERRNO_CALLOUTDEFER;
   }
+else if (yield != OK)
+  {
+  if (addr->message != NULL)
+      addr->message = string_sprintf("%s verify callout failed: %s",
+                                     is_recipient ? "Recipient" : "Sender",
+                                     addr->message);
+  }
 
 /* Come here from within the cache-reading code on fast-track exit. */
 
 END_CALLOUT:
+if (failure_reason != NULL)
+  set_failure_info(is_recipient, failure_reason, addr);
 tls_modify_variables(&tls_in);	/* return variables to inbound values */
 return yield;
 }
@@ -1670,8 +1755,7 @@ address_item *addr_new = NULL;
 address_item *addr_remote = NULL;
 address_item *addr_local = NULL;
 address_item *addr_succeed = NULL;
-uschar **failure_ptr = options & vopt_is_recipient
-  ? &recipient_verify_failure : &sender_verify_failure;
+BOOL is_recipient = options & vopt_is_recipient;
 uschar *ko_prefix, *cr;
 uschar *address = vaddr->address;
 uschar *save_sender;
@@ -1679,7 +1763,7 @@ uschar null_sender[] = { 0 };             /* Ensure writeable memory */
 
 /* Clear, just in case */
 
-*failure_ptr = NULL;
+set_failure_info(is_recipient, NULL, NULL);
 
 /* Set up a prefix and suffix for error message which allow us to use the same
 output statements both in EXPN mode (where an SMTP response is needed) and when
@@ -1701,7 +1785,7 @@ if (parse_find_at(address) == NULL)
     if (fp)
       respond_printf(fp, "%sA domain is required for \"%s\"%s\n",
         ko_prefix, address, cr);
-    *failure_ptr = US"qualify";
+    set_failure_info(is_recipient, US"qualify", NULL);
     return FAIL;
     }
   address = rewrite_address_qualify(address, options & vopt_is_recipient);
@@ -1972,7 +2056,7 @@ while (addr_new)
 
   /* Otherwise, any failure is a routing failure */
 
-  else *failure_ptr = US"route";
+  else set_failure_info(is_recipient, US"route", addr);
 
   /* A router may return REROUTED if it has set up a child address as a result
   of a change of domain name (typically from widening). In this case we always

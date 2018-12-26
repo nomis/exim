@@ -677,6 +677,8 @@ static var_entry var_table[] = {
   { "received_time",       vtype_int,         &received_time.tv_sec },
   { "recipient_data",      vtype_stringptr,   &recipient_data },
   { "recipient_verify_failure",vtype_stringptr,&recipient_verify_failure },
+  { "recipient_verify_failure_log_message",vtype_stringptr,&recipient_verify_failure_log_message },
+  { "recipient_verify_failure_user_message",vtype_stringptr,&recipient_verify_failure_user_message },
   { "recipients",          vtype_string_func, (void *) &fn_recipients },
   { "recipients_count",    vtype_int,         &recipients_count },
 #ifdef WITH_CONTENT_SCAN
@@ -707,6 +709,8 @@ static var_entry var_table[] = {
   { "sender_rate_period",  vtype_stringptr,   &sender_rate_period },
   { "sender_rcvhost",      vtype_stringptr,   &sender_rcvhost },
   { "sender_verify_failure",vtype_stringptr,  &sender_verify_failure },
+  { "sender_verify_failure_log_message",vtype_stringptr,&sender_verify_failure_log_message },
+  { "sender_verify_failure_user_message",vtype_stringptr,&sender_verify_failure_user_message },
   { "sending_ip_address",  vtype_stringptr,   &sending_ip_address },
   { "sending_port",        vtype_int,         &sending_port },
   { "smtp_active_hostname", vtype_stringptr,  &smtp_active_hostname },

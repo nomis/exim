@@ -1,0 +1,237 @@
+# callout verification (with result message and caching)
+need_ipv4
+# Accepted
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+250 OK
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<ok@localhost>
+QUIT
+****
+# Cached
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<ok@localhost>
+QUIT
+****
+# Test reject (RCPT)
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+550 REJECTED
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<deny-rcpt@localhost>
+QUIT
+****
+# Cached
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<deny-rcpt@localhost>
+QUIT
+****
+# Test temporary reject (RCPT)
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+450 TEMPORARILY REJECTED 1
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<defer-rcpt@localhost>
+QUIT
+****
+# Not cached
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+450 TEMPORARILY REJECTED 2
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<defer-rcpt@localhost>
+QUIT
+****
+# Failure to connect
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<fail-connect@otherhost>
+QUIT
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<fail-connect@otherhost>
+QUIT
+****
+# Test reject (connect)
+server PORT_S
+500 REJECTED
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<deny-connect@otherhost10>
+QUIT
+****
+# Cached
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<deny-connect@otherhost10>
+QUIT
+****
+# Test temporary reject (connect)
+server PORT_S
+400 TEMPORARILY REJECTED 1
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<defer-connect@otherhost11>
+QUIT
+****
+# Not cached
+server PORT_S
+400 TEMPORARILY REJECTED 2
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<defer-connect@otherhost11>
+QUIT
+****
+# Test reject (EHLO)
+server PORT_S
+220 Server ready
+EHLO
+500 REJECTED A
+HELO
+500 REJECTED B
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<deny-ehlo@otherhost12>
+QUIT
+****
+# Cached
+#server PORT_S
+#220 Server ready
+#EHLO
+#500 REJECTED 2A
+#HELO
+#500 REJECTED 2B
+#QUIT
+#250 OK
+#****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<deny-ehlo@otherhost12>
+QUIT
+****
+# Test temporary reject (EHLO)
+server PORT_S
+220 Server ready
+EHLO
+400 TEMPORARILY REJECTED 1A
+HELO
+400 TEMPORARILY REJECTED 1B
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<defer-ehlo@otherhost13>
+QUIT
+****
+# Not cached
+server PORT_S
+220 Server ready
+EHLO
+400 TEMPORARILY REJECTED 2A
+HELO
+400 TEMPORARILY REJECTED 2B
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<defer-ehlo@otherhost13>
+QUIT
+****
+# Test reject (MAIL)
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+550 REJECTED
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<deny-mail@otherhost20>
+QUIT
+****
+# Cached
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<deny-mail@otherhost20>
+QUIT
+****
+# Test temporary reject (MAIL)
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+450 TEMPORARILY REJECTED 1
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<defer-mail@otherhost40>
+QUIT
+****
+# Not cached
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+450 TEMPORARILY REJECTED 2
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<z@test.ex>
+RCPT TO:<defer-mail@otherhost40>
+QUIT
+****

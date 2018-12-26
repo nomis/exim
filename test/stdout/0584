@@ -1,0 +1,394 @@
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+250 Accepted
+221 myhost.test.ex closing connection
+
+******** SERVER ********
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<ok@localhost>
+250 OK
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<deny-rcpt@localhost>
+550 REJECTED
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<defer-rcpt@localhost>
+450 TEMPORARILY REJECTED 1
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<defer-rcpt@localhost>
+450 TEMPORARILY REJECTED 2
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+500 REJECTED
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+500 REJECTED
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+400 TEMPORARILY REJECTED 1
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+400 TEMPORARILY REJECTED 2
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+500 REJECTED 1A
+HELO myhost.test.ex
+500 REJECTED 1B
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+500 REJECTED 2A
+HELO myhost.test.ex
+500 REJECTED 2B
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+400 TEMPORARILY REJECTED 1A
+HELO myhost.test.ex
+400 TEMPORARILY REJECTED 1B
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+400 TEMPORARILY REJECTED 2A
+HELO myhost.test.ex
+400 TEMPORARILY REJECTED 2B
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+550 REJECTED
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+450 TEMPORARILY REJECTED 1
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+450 TEMPORARILY REJECTED 2
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<deny-postmaster@otherhost60>
+250 OK
+RSET
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<postmaster@otherhost60>
+550 REJECTED
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<defer-postmaster@otherhost80>
+250 OK
+RSET
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<postmaster@otherhost80>
+450 TEMPORARILY REJECTED 1
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<defer-postmaster@otherhost80>
+250 OK
+RSET
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<postmaster@otherhost80>
+450 TEMPORARILY REJECTED 2
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<deny-fullpostmaster@otherhost100>
+250 OK
+RSET
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<postmaster@otherhost100>
+550 REJECTED 1A
+RCPT TO:<postmaster>
+550 REJECTED 1B
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<defer-fullpostmaster@otherhost120>
+250 OK
+RSET
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<postmaster@otherhost120>
+450 TEMPORARILY REJECTED 1A
+RCPT TO:<postmaster>
+450 TEMPORARILY REJECTED 1B
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<defer-fullpostmaster@otherhost120>
+250 OK
+RSET
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<postmaster@otherhost120>
+450 TEMPORARILY REJECTED 2A
+RCPT TO:<postmaster>
+450 TEMPORARILY REJECTED 2B
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<myhost.test.ex-dddddddd-testing@otherhost140>
+450 TEMPORARILY REJECTED 1
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<myhost.test.ex-dddddddd-testing@otherhost140>
+450 TEMPORARILY REJECTED 2
+QUIT
+250 OK
+End of script

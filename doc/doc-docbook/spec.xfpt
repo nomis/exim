@@ -12892,6 +12892,18 @@ expansion that all such lists undergo before being interpreted.
 In an ACL, when a recipient verification fails, this variable contains
 information about the failure. It is set to one of the following words:
 
+.vitem &$recipient_verify_failure_log_message$&
+.vindex "&$recipient_verify_failure_log_message$&"
+In an ACL, when a recipient verification fails, this variable contains the
+detailed log message for the failure (which may be empty for some failure
+scenarios).
+
+.vitem &$recipient_verify_failure_user_message$&
+.vindex "&$recipient_verify_failure_user_message$&"
+In an ACL, when a recipient verification fails, this variable contains the
+detailed user response message for the failure (which may be empty for some
+failure scenarios).
+
 .ilist
 &"qualify"&: The address was unqualified (no domain), and the message
 was neither local nor came from an exempted host.
@@ -13208,6 +13220,17 @@ into the string, to improve the formatting of the &'Received:'& header.
 In an ACL, when a sender verification fails, this variable contains information
 about the failure. The details are the same as for
 &$recipient_verify_failure$&.
+
+.vitem &$sender_verify_failure_log_message$&
+.vindex "&$sender_verify_failure_log_message$&"
+In an ACL, when a sender verification fails, this variable contains the detailed
+log message for the failure (which may be empty for some failure scenarios).
+
+.vitem &$sender_verify_failure_user_message$&
+.vindex "&$sender_verify_failure_user_message$&"
+In an ACL, when a sender verification fails, this variable contains the detailed
+user response message for the failure (which may be empty for some failure
+scenarios).
 
 .vitem &$sending_ip_address$&
 .vindex "&$sending_ip_address$&"
@@ -32058,17 +32081,26 @@ discussion in section &<<SECTredirwhilveri>>&.
 
 .cindex "verifying address" "differentiating failures"
 .vindex "&$recipient_verify_failure$&"
+.vindex "&$recipient_verify_failure_log_message$&"
+.vindex "&$recipient_verify_failure_user_message$&"
 .vindex "&$sender_verify_failure$&"
+.vindex "&$sender_verify_failure_log_message$&"
+.vindex "&$sender_verify_failure_user_message$&"
 .vindex "&$acl_verify_message$&"
 After an address verification failure, &$acl_verify_message$& contains the
-error message that is associated with the failure. It can be preserved by
+error message that is associated with the failure. Detailed messages for
+logging and user responses may be available in
+&$recipient_verify_failure_log_message$&,
+&$recipient_verify_failure_user_message$&,
+&$sender_verify_failure_log_message$& and
+&$sender_verify_failure_user_message$&. They can be preserved by
 coding like this:
 .code
 warn  !verify = sender
        set acl_m0 = $acl_verify_message
 .endd
 If you are writing your own custom rejection message or log message when
-denying access, you can use this variable to include information about the
+denying access, you can use these variables to include information about the
 verification failure.
 
 In addition, &$sender_verify_failure$& or &$recipient_verify_failure$& (as

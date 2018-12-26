@@ -1,0 +1,659 @@
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying ok@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering ok@localhost
+Attempting full verification using callout
+callout cache: no domain record found for localhost
+callout cache: no address record found for ok@localhost
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP<< 220 Server ready
+   SMTP>> EHLO myhost.test.ex
+   SMTP<< 250 OK
+   SMTP>> MAIL FROM:<>
+   SMTP<< 250 OK
+   SMTP>> RCPT TO:<ok@localhost>
+   SMTP<< 250 OK
+   SMTP>> QUIT
+   SMTP<< 250 OK
+   SMTP(close)>>
+wrote callout cache domain record for localhost:
+  result=1 postmaster=0 random=0
+wrote positive callout cache address record for ok@localhost
+LOG: MAIN
+  acl_m_verify=accept
+created log directory TESTSUITE/spool/log
+LOG: MAIN
+  recipient_verify_failure=
+LOG: MAIN
+  recipient_verify_failure_log_message=
+LOG: MAIN
+  recipient_verify_failure_user_message=
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying ok@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering ok@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: found address record for ok@localhost
+callout cache: address record is positive
+LOG: MAIN
+  acl_m_verify=accept
+LOG: MAIN
+  recipient_verify_failure=
+LOG: MAIN
+  recipient_verify_failure_log_message=
+LOG: MAIN
+  recipient_verify_failure_user_message=
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-rcpt@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-rcpt@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: no address record found for deny-rcpt@localhost
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP<< 220 Server ready
+   SMTP>> EHLO myhost.test.ex
+   SMTP<< 250 OK
+   SMTP>> MAIL FROM:<>
+   SMTP<< 250 OK
+   SMTP>> RCPT TO:<deny-rcpt@localhost>
+   SMTP<< 550 REJECTED
+   SMTP>> QUIT
+   SMTP<< 250 OK
+   SMTP(close)>>
+wrote callout cache domain record for localhost:
+  result=1 postmaster=0 random=0
+wrote negative callout cache address record for deny-rcpt@localhost
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient_verify_failure=recipient
+LOG: MAIN
+  recipient_verify_failure_log_message=Recipient verify callout failed: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<deny-rcpt@localhost>: 550 REJECTED
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <deny-rcpt@localhost>\n127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<deny-rcpt@localhost>: 550 REJECTED
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-rcpt@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-rcpt@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: found address record for deny-rcpt@localhost
+callout cache: address record is negative
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient_verify_failure=recipient
+LOG: MAIN
+  recipient_verify_failure_log_message=Previous (cached) callout verification failure
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <deny-rcpt@localhost>\nPrevious (cached) callout verification failure
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-rcpt@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-rcpt@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: no address record found for defer-rcpt@localhost
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP<< 220 Server ready
+   SMTP>> EHLO myhost.test.ex
+   SMTP<< 250 OK
+   SMTP>> MAIL FROM:<>
+   SMTP<< 250 OK
+   SMTP>> RCPT TO:<defer-rcpt@localhost>
+   SMTP<< 450 TEMPORARILY REJECTED 1
+   SMTP>> QUIT
+   SMTP<< 250 OK
+   SMTP(close)>>
+wrote callout cache domain record for localhost:
+  result=1 postmaster=0 random=0
+LOG: MAIN
+  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 1
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient_verify_failure=recipient
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 1
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-rcpt@localhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 1
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-rcpt@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-rcpt@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: no address record found for defer-rcpt@localhost
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP<< 220 Server ready
+   SMTP>> EHLO myhost.test.ex
+   SMTP<< 250 OK
+   SMTP>> MAIL FROM:<>
+   SMTP<< 250 OK
+   SMTP>> RCPT TO:<defer-rcpt@localhost>
+   SMTP<< 450 TEMPORARILY REJECTED 2
+   SMTP>> QUIT
+   SMTP<< 250 OK
+   SMTP(close)>>
+wrote callout cache domain record for localhost:
+  result=1 postmaster=0 random=0
+LOG: MAIN
+  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 2
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient_verify_failure=recipient
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 2
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-rcpt@localhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 2
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying fail-connect@otherhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering fail-connect@otherhost
+Attempting full verification using callout
+callout cache: no domain record found for otherhost
+callout cache: no address record found for fail-connect@otherhost
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP(Connection refused)<<
+   SMTP(close)>>
+LOG: MAIN
+  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient_verify_failure=connect
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <fail-connect@otherhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying fail-connect@otherhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering fail-connect@otherhost
+Attempting full verification using callout
+callout cache: no domain record found for otherhost
+callout cache: no address record found for fail-connect@otherhost
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP(Connection refused)<<
+   SMTP(close)>>
+LOG: MAIN
+  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient_verify_failure=connect
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <fail-connect@otherhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-connect@otherhost10
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-connect@otherhost10
+Attempting full verification using callout
+callout cache: no domain record found for otherhost10
+callout cache: no address record found for deny-connect@otherhost10
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP<< 500 REJECTED
+   SMTP>> QUIT
+   SMTP(close)>>
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient_verify_failure=connect
+LOG: MAIN
+  recipient_verify_failure_log_message=Recipient verify callout failed: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 500 REJECTED
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <deny-connect@otherhost10>\n127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 500 REJECTED
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-connect@otherhost10
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-connect@otherhost10
+Attempting full verification using callout
+callout cache: no domain record found for otherhost10
+callout cache: no address record found for deny-connect@otherhost10
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP(Connection refused)<<
+   SMTP(close)>>
+LOG: MAIN
+  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient_verify_failure=connect
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <deny-connect@otherhost10>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-connect@otherhost11
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-connect@otherhost11
+Attempting full verification using callout
+callout cache: no domain record found for otherhost11
+callout cache: no address record found for defer-connect@otherhost11
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP<< 400 TEMPORARILY REJECTED 1
+   SMTP>> QUIT
+   SMTP(close)>>
+LOG: MAIN
+  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 1
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient_verify_failure=connect
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 1
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-connect@otherhost11>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 1
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-connect@otherhost11
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-connect@otherhost11
+Attempting full verification using callout
+callout cache: no domain record found for otherhost11
+callout cache: no address record found for defer-connect@otherhost11
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP<< 400 TEMPORARILY REJECTED 2
+   SMTP>> QUIT
+   SMTP(close)>>
+LOG: MAIN
+  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 2
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient_verify_failure=connect
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 2
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-connect@otherhost11>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 2
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-ehlo@otherhost12
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-ehlo@otherhost12
+Attempting full verification using callout
+callout cache: no domain record found for otherhost12
+callout cache: no address record found for deny-ehlo@otherhost12
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP<< 220 Server ready
+   SMTP>> EHLO myhost.test.ex
+   SMTP<< 500 REJECTED A
+   SMTP>> HELO myhost.test.ex
+   SMTP<< 500 REJECTED B
+   SMTP>> QUIT
+   SMTP(close)>>
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient_verify_failure=connect
+LOG: MAIN
+  recipient_verify_failure_log_message=Recipient verify callout failed: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 500 REJECTED B
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <deny-ehlo@otherhost12>\n127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 500 REJECTED B
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-ehlo@otherhost12
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-ehlo@otherhost12
+Attempting full verification using callout
+callout cache: no domain record found for otherhost12
+callout cache: no address record found for deny-ehlo@otherhost12
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP(Connection refused)<<
+   SMTP(close)>>
+LOG: MAIN
+  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient_verify_failure=connect
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <deny-ehlo@otherhost12>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Connection refused
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-ehlo@otherhost13
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-ehlo@otherhost13
+Attempting full verification using callout
+callout cache: no domain record found for otherhost13
+callout cache: no address record found for defer-ehlo@otherhost13
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP<< 220 Server ready
+   SMTP>> EHLO myhost.test.ex
+   SMTP<< 400 TEMPORARILY REJECTED 1A
+   SMTP>> HELO myhost.test.ex
+   SMTP<< 400 TEMPORARILY REJECTED 1B
+   SMTP>> QUIT
+   SMTP(close)>>
+LOG: MAIN
+  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 1B
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient_verify_failure=connect
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 1B
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-ehlo@otherhost13>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 1B
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-ehlo@otherhost13
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-ehlo@otherhost13
+Attempting full verification using callout
+callout cache: no domain record found for otherhost13
+callout cache: no address record found for defer-ehlo@otherhost13
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP<< 220 Server ready
+   SMTP>> EHLO myhost.test.ex
+   SMTP<< 400 TEMPORARILY REJECTED 2A
+   SMTP>> HELO myhost.test.ex
+   SMTP<< 400 TEMPORARILY REJECTED 2B
+   SMTP>> QUIT
+   SMTP(close)>>
+LOG: MAIN
+  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 2B
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient_verify_failure=connect
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 2B
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-ehlo@otherhost13>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 2B
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-mail@otherhost20
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-mail@otherhost20
+Attempting full verification using callout
+callout cache: no domain record found for otherhost20
+callout cache: no address record found for deny-mail@otherhost20
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP<< 220 Server ready
+   SMTP>> EHLO myhost.test.ex
+   SMTP<< 250 OK
+   SMTP>> MAIL FROM:<>
+   SMTP<< 550 REJECTED
+   SMTP>> QUIT
+   SMTP<< 250 OK
+   SMTP(close)>>
+wrote callout cache domain record for otherhost20:
+  result=3 postmaster=0 random=0
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Recipient verify callout failed: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 550 REJECTED
+LOG: MAIN
+  recipient_verify_failure_user_message=Callback setup failed while verifying <deny-mail@otherhost20>\n127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 550 REJECTED
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-mail@otherhost20
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-mail@otherhost20
+Attempting full verification using callout
+callout cache: found domain record for otherhost20
+callout cache: domain gave initial rejection, or does not accept HELO or MAIL FROM:<>
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Previous (cached) callout result reused
+LOG: MAIN
+  recipient_verify_failure_user_message=Callback setup failed while verifying <deny-mail@otherhost20>\n(result of an earlier callout reused).
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-mail@otherhost40
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-mail@otherhost40
+Attempting full verification using callout
+callout cache: no domain record found for otherhost40
+callout cache: no address record found for defer-mail@otherhost40
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP<< 220 Server ready
+   SMTP>> EHLO myhost.test.ex
+   SMTP<< 250 OK
+   SMTP>> MAIL FROM:<>
+   SMTP<< 450 TEMPORARILY REJECTED 1
+   SMTP>> QUIT
+   SMTP<< 250 OK
+   SMTP(close)>>
+wrote callout cache domain record for otherhost40:
+  result=1 postmaster=0 random=0
+LOG: MAIN
+  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 1
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 1
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-mail@otherhost40>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 1
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-mail@otherhost40
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-mail@otherhost40
+Attempting full verification using callout
+callout cache: found domain record for otherhost40
+callout cache: no address record found for defer-mail@otherhost40
+interface=NULL port=1224
+ Connecting to 127.0.0.1 [127.0.0.1]:1224 ...  connected
+   SMTP<< 220 Server ready
+   SMTP>> EHLO myhost.test.ex
+   SMTP<< 250 OK
+   SMTP>> MAIL FROM:<>
+   SMTP<< 450 TEMPORARILY REJECTED 2
+   SMTP>> QUIT
+   SMTP<< 250 OK
+   SMTP(close)>>
+wrote callout cache domain record for otherhost40:
+  result=1 postmaster=0 random=0
+LOG: MAIN
+  H=[V4NET.0.0.1] U=root Warning: ACL "warn" statement skipped: condition test deferred: Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 2
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 2
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-mail@otherhost40>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 2
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp (msg setup toplevel) terminating with rc=0 >>>>>>>>>>>>>>>>
