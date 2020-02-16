@@ -214,7 +214,8 @@ enum {
   CONTROL_NO_MULTILINE,
   CONTROL_NO_PIPELINING,
   CONTROL_NO_DELAY_FLUSH,
-  CONTROL_NO_CALLOUT_FLUSH
+  CONTROL_NO_CALLOUT_FLUSH,
+  CONTROL_NO_WARN_SKIPPED
 };
 
 /* ACL control names; keep in step with the table above! This list is used for
@@ -257,7 +258,8 @@ static uschar *controls[] = {
   US"no_multiline_responses",
   US"no_pipelining",
   US"no_delay_flush",
-  US"no_callout_flush"
+  US"no_callout_flush",
+  US"no_warn_skipped"
 };
 
 /* Flags to indicate for which conditions/modifiers a string expansion is done
@@ -707,7 +709,9 @@ static unsigned int control_forbids[] = {
     (1<<ACL_WHERE_NOTSMTP_START),
 
   (1<<ACL_WHERE_NOTSMTP)|                          /* no_callout_flush */
-    (1<<ACL_WHERE_NOTSMTP_START)
+    (1<<ACL_WHERE_NOTSMTP_START),
+
+  0                                                /* no_warn_skipped */
 };
 
 /* Structure listing various control arguments, with their characteristics. */
@@ -741,6 +745,7 @@ static control_def controls_list[] = {
   { US"no_enforce_sync",         CONTROL_NO_ENFORCE_SYNC,       FALSE },
   { US"no_multiline_responses",  CONTROL_NO_MULTILINE,          FALSE },
   { US"no_pipelining",           CONTROL_NO_PIPELINING,         FALSE },
+  { US"no_warn_skipped",         CONTROL_NO_WARN_SKIPPED,       FALSE },
   { US"queue_only",              CONTROL_QUEUE_ONLY,            FALSE },
 #ifdef WITH_CONTENT_SCAN
   { US"no_mbox_unspool",         CONTROL_NO_MBOX_UNSPOOL,       FALSE },
@@ -754,6 +759,10 @@ static control_def controls_list[] = {
   { US"utf8_downconvert",        CONTROL_UTF8_DOWNCONVERT,      TRUE }
 #endif
   };
+
+/* Flags applicable to processing of the current verb. */
+
+enum { ACLF_NO_WARN_SKIPPED };
 
 /* Support data structures for Client SMTP Authorization. acl_verify_csa()
 caches its result in a tree to avoid repeated DNS queries. The result is an
@@ -932,6 +941,7 @@ while ((s = (*func)()) != NULL)
     this->next = NULL;
     this->verb = v;
     this->condition = NULL;
+    this->flags = 0;
     condp = &(this->condition);
     if (*s == 0) continue;               /* No condition on this line */
     if (*s == '!')
@@ -2990,7 +3000,7 @@ Returns:       OK        - all conditions are met
 static int
 acl_check_condition(int verb, acl_condition_block *cb, int where,
   address_item *addr, int level, BOOL *epp, uschar **user_msgptr,
-  uschar **log_msgptr, int *basic_errno)
+  uschar **log_msgptr, int *basic_errno, int *flags)
 {
 uschar *user_message = NULL;
 uschar *log_message = NULL;
@@ -3267,6 +3277,10 @@ for (; cb != NULL; cb = cb->next)
 
 	case CONTROL_NO_CALLOUT_FLUSH:
 	disable_callout_flush = TRUE;
+	break;
+
+	case CONTROL_NO_WARN_SKIPPED:
+	*flags |= (1 << ACLF_NO_WARN_SKIPPED);
 	break;
 
 	case CONTROL_FAKEREJECT:
@@ -4164,7 +4178,7 @@ while (acl != NULL)
 
   search_error_message = NULL;
   cond = acl_check_condition(acl->verb, acl->condition, where, addr, level,
-    &endpass_seen, user_msgptr, log_msgptr, &basic_errno);
+    &endpass_seen, user_msgptr, log_msgptr, &basic_errno, &acl->flags);
 
   /* Handle special returns: DEFER causes a return except on a WARN verb;
   ERROR always causes a return. */
@@ -4287,7 +4301,8 @@ while (acl != NULL)
     case ACL_WARN:
     if (cond == OK)
       acl_warn(where, *user_msgptr, *log_msgptr);
-    else if (cond == DEFER && (log_extra_selector & LX_acl_warn_skipped) != 0)
+    else if (cond == DEFER && (log_extra_selector & LX_acl_warn_skipped) != 0
+             && (acl->flags & (1 << ACLF_NO_WARN_SKIPPED)) == 0)
       log_write(0, LOG_MAIN, "%s Warning: ACL \"warn\" statement skipped: "
         "condition test deferred%s%s", host_and_ident(TRUE),
         (*log_msgptr == NULL)? US"" : US": ",
