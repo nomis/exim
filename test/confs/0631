@@ -1,0 +1,86 @@
+# Exim test configuration 0631
+
+exim_path = EXIM_PATH
+keep_environment =
+host_lookup_order = bydns
+primary_hostname = myhost.test.ex
+spool_directory = DIR/spool
+log_file_path = DIR/spool/log/%slog
+gecos_pattern = ""
+gecos_name = CALLER_NAME
+tls_advertise_hosts = 
+
+# ----- Main settings -----
+
+domainlist local_domains = *
+
+acl_smtp_rcpt = check_sender
+
+callout_domain_negative_expire = 1h
+callout_domain_positive_expire = 1d
+callout_negative_expire = 5h
+callout_positive_expire = 1w
+
+CALLOUT_CONNECT = 30s
+CALLOUT_MAXWAIT = 30s
+
+# ----- ACL -----
+
+begin acl
+
+check_sender:
+  warn    hosts    = V4NET.0.0.1
+          control  = no_warn_skipped
+          acl      = verify_recipient
+
+  warn    hosts    = V4NET.0.0.0/24
+          logwrite = ------------------------------------------------------------
+          logwrite = acl_m_verify=$acl_m_verify
+          logwrite = recipient=$local_part@$domain
+          logwrite = recipient_verify_failure=$recipient_verify_failure
+          logwrite = recipient_verify_failure_log_message=$recipient_verify_failure_log_message
+          logwrite = recipient_verify_failure_user_message=$recipient_verify_failure_user_message
+
+  accept
+
+verify_recipient:
+  accept  set acl_m_verify = defer
+          verify           = recipient/callout=1s,connect=CALLOUT_CONNECT,maxwait=CALLOUT_MAXWAIT
+          set acl_m_verify = accept
+  deny    set acl_m_verify = deny
+
+# ----- Routers -----
+
+begin routers
+
+fail:
+  driver = manualroute
+  domains = no.route
+  route_list = other 127.0.0.1
+  transport = smtp
+  no_more
+
+all:
+  driver = manualroute
+  route_list = * 127.0.0.1
+  self = send
+  transport = smtp
+
+
+# ----- Transports -----
+
+begin transports
+
+smtp:
+  driver = smtp
+  port = PORT_S
+
+
+# ----- Retry -----
+
+begin retry
+
+* * F,5d,10s
+
+
+# End

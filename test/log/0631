@@ -1,0 +1,270 @@
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=accept
+1999-03-02 09:44:33 recipient=ok@localhost
+1999-03-02 09:44:33 recipient_verify_failure=
+1999-03-02 09:44:33 recipient_verify_failure_log_message=
+1999-03-02 09:44:33 recipient_verify_failure_user_message=
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=accept
+1999-03-02 09:44:33 recipient=ok@localhost
+1999-03-02 09:44:33 recipient_verify_failure=
+1999-03-02 09:44:33 recipient_verify_failure_log_message=
+1999-03-02 09:44:33 recipient_verify_failure_user_message=
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=accept
+1999-03-02 09:44:33 recipient=ok-timeout@localhost
+1999-03-02 09:44:33 recipient_verify_failure=
+1999-03-02 09:44:33 recipient_verify_failure_log_message=
+1999-03-02 09:44:33 recipient_verify_failure_user_message=
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=accept
+1999-03-02 09:44:33 recipient=ok-timeout@localhost
+1999-03-02 09:44:33 recipient_verify_failure=
+1999-03-02 09:44:33 recipient_verify_failure_log_message=
+1999-03-02 09:44:33 recipient_verify_failure_user_message=
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=deny
+1999-03-02 09:44:33 recipient=deny-rcpt@localhost
+1999-03-02 09:44:33 recipient_verify_failure=recipient
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Recipient verify callout failed: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<deny-rcpt@localhost>: 550 REJECTED
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <deny-rcpt@localhost>\n127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<deny-rcpt@localhost>: 550 REJECTED
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=deny
+1999-03-02 09:44:33 recipient=deny-rcpt@localhost
+1999-03-02 09:44:33 recipient_verify_failure=recipient
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Previous (cached) callout verification failure
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <deny-rcpt@localhost>\nPrevious (cached) callout verification failure
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-rcpt@localhost
+1999-03-02 09:44:33 recipient_verify_failure=recipient
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 1
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-rcpt@localhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 1
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-rcpt@localhost
+1999-03-02 09:44:33 recipient_verify_failure=recipient
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 2
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-rcpt@localhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<defer-rcpt@localhost>: 450 TEMPORARILY REJECTED 2
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-rcpt-timeout@localhost
+1999-03-02 09:44:33 recipient_verify_failure=recipient
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after RCPT TO:<defer-rcpt-timeout@localhost>
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-rcpt-timeout@localhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after RCPT TO:<defer-rcpt-timeout@localhost>
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-rcpt-timeout@localhost
+1999-03-02 09:44:33 recipient_verify_failure=recipient
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after RCPT TO:<defer-rcpt-timeout@localhost>
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-rcpt-timeout@localhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after RCPT TO:<defer-rcpt-timeout@localhost>
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-rcpt-closed@localhost
+1999-03-02 09:44:33 recipient_verify_failure=recipient
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "RCPT TO:<defer-rcpt-closed@localhost>" was: connection dropped
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-rcpt-closed@localhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "RCPT TO:<defer-rcpt-closed@localhost>" was: connection dropped
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-rcpt-closed@localhost
+1999-03-02 09:44:33 recipient_verify_failure=recipient
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "RCPT TO:<defer-rcpt-closed@localhost>" was: connection dropped
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-rcpt-closed@localhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "RCPT TO:<defer-rcpt-closed@localhost>" was: connection dropped
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=fail-connect@otherhost
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : could not connect: Connection refused
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <fail-connect@otherhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : could not connect: Connection refused
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=fail-connect@otherhost
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : could not connect: Connection refused
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <fail-connect@otherhost>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : could not connect: Connection refused
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=deny
+1999-03-02 09:44:33 recipient=deny-connect@otherhost10
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Recipient verify callout failed: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 500 REJECTED
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <deny-connect@otherhost10>\n127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 500 REJECTED
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=deny-connect@otherhost10
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : could not connect: Connection refused
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <deny-connect@otherhost10>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : could not connect: Connection refused
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-connect@otherhost11
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 1
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-connect@otherhost11>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 1
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-connect@otherhost11
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 2
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-connect@otherhost11>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after initial connection: 400 TEMPORARILY REJECTED 2
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-connect-timeout@otherhost14
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after initial connection
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-connect-timeout@otherhost14>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after initial connection
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-connect-timeout@otherhost14
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after initial connection
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-connect-timeout@otherhost14>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after initial connection
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-connect-closed@otherhost14
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Remote host closed connection in response to initial connection
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-connect-closed@otherhost14>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Remote host closed connection in response to initial connection
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-connect-closed@otherhost14
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Remote host closed connection in response to initial connection
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-connect-closed@otherhost14>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Remote host closed connection in response to initial connection
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=deny
+1999-03-02 09:44:33 recipient=deny-ehlo@otherhost12
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Recipient verify callout failed: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 500 REJECTED B
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <deny-ehlo@otherhost12>\n127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 500 REJECTED B
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=deny-ehlo@otherhost12
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : could not connect: Connection refused
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <deny-ehlo@otherhost12>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : could not connect: Connection refused
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-ehlo@otherhost13
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 1B
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-ehlo@otherhost13>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 1B
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-ehlo@otherhost13
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 2B
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-ehlo@otherhost13>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after HELO myhost.test.ex: 400 TEMPORARILY REJECTED 2B
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-ehlo-timeout@otherhost15
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after EHLO myhost.test.ex
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-ehlo-timeout@otherhost15>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after EHLO myhost.test.ex
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-ehlo-timeout@otherhost15
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after EHLO myhost.test.ex
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-ehlo-timeout@otherhost15>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after EHLO myhost.test.ex
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-ehlo-closed@otherhost15
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Remote host closed connection in response to EHLO myhost.test.ex
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-ehlo-closed@otherhost15>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Remote host closed connection in response to EHLO myhost.test.ex
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-ehlo-closed@otherhost15
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Remote host closed connection in response to EHLO myhost.test.ex
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-ehlo-closed@otherhost15>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Remote host closed connection in response to EHLO myhost.test.ex
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-helo-timeout@otherhost16
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after HELO myhost.test.ex
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-helo-timeout@otherhost16>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after HELO myhost.test.ex
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-helo-timeout@otherhost16
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after HELO myhost.test.ex
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-helo-timeout@otherhost16>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after HELO myhost.test.ex
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-helo-closed@otherhost16
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Remote host closed connection in response to HELO myhost.test.ex (EHLO response was: 400 USE HELO)
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-helo-closed@otherhost16>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Remote host closed connection in response to HELO myhost.test.ex (EHLO response was: 400 USE HELO)
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-helo-closed@otherhost16
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Remote host closed connection in response to HELO myhost.test.ex (EHLO response was: 400 USE HELO)
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-helo-closed@otherhost16>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : Remote host closed connection in response to HELO myhost.test.ex (EHLO response was: 400 USE HELO)
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=deny
+1999-03-02 09:44:33 recipient=deny-mail@otherhost20
+1999-03-02 09:44:33 recipient_verify_failure=mail
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Recipient verify callout failed: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 550 REJECTED
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Callback setup failed while verifying <deny-mail@otherhost20>\n127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 550 REJECTED
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=deny
+1999-03-02 09:44:33 recipient=deny-mail@otherhost20
+1999-03-02 09:44:33 recipient_verify_failure=mail
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Previous (cached) callout result reused
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Callback setup failed while verifying <deny-mail@otherhost20>\n(result of an earlier callout reused).
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-mail@otherhost40
+1999-03-02 09:44:33 recipient_verify_failure=mail
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 1
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-mail@otherhost40>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 1
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-mail@otherhost40
+1999-03-02 09:44:33 recipient_verify_failure=mail
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 2
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-mail@otherhost40>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: 450 TEMPORARILY REJECTED 2
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-mail-timeout@otherhost41
+1999-03-02 09:44:33 recipient_verify_failure=mail
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after MAIL FROM:<>
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-mail-timeout@otherhost41>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after MAIL FROM:<>
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-mail-timeout@otherhost41
+1999-03-02 09:44:33 recipient_verify_failure=mail
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after MAIL FROM:<>
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-mail-timeout@otherhost41>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after MAIL FROM:<>
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-mail-closed@otherhost41
+1999-03-02 09:44:33 recipient_verify_failure=mail
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: connection dropped
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-mail-closed@otherhost41>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: connection dropped
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=defer-mail-closed@otherhost41
+1999-03-02 09:44:33 recipient_verify_failure=mail
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: connection dropped
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <defer-mail-closed@otherhost41>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : response to "MAIL FROM:<>" was: connection dropped
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=deny
+1999-03-02 09:44:33 recipient=postmaster@no.route
+1999-03-02 09:44:33 recipient_verify_failure=route
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Unrouteable address
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <postmaster@no.route>\nUnrouteable address
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=overall-timeout@otherhost200
+1999-03-02 09:44:33 recipient_verify_failure=timeout
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: overall timeout exceeded
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <overall-timeout@otherhost200>\nCould not complete recipient verify callout
+1999-03-02 09:44:33 ------------------------------------------------------------
+1999-03-02 09:44:33 acl_m_verify=defer
+1999-03-02 09:44:33 recipient=connect-timeout@otherhost201
+1999-03-02 09:44:33 recipient_verify_failure=connect
+1999-03-02 09:44:33 recipient_verify_failure_log_message=Could not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : could not connect: Connection timed out
+1999-03-02 09:44:33 recipient_verify_failure_user_message=Verification failed for <connect-timeout@otherhost201>\nCould not complete recipient verify callout: 127.0.0.1 [127.0.0.1] : could not connect: Connection timed out
