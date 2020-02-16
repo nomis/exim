@@ -29,14 +29,20 @@ check_recipient:
   deny    hosts   = V4NET.0.0.1
           log_message = ($sender_verify_failure)
          !verify  = sender/callout
+          logwrite = sender_verify_failure_log_message=$sender_verify_failure_log_message
+          logwrite = sender_verify_failure_user_message=$sender_verify_failure_user_message
   deny    hosts   = V4NET.0.0.2
          !verify  = sender/callout=postmaster
+          logwrite = sender_verify_failure_log_message=$sender_verify_failure_log_message
+          logwrite = sender_verify_failure_user_message=$sender_verify_failure_user_message
   deny    hosts   = V4NET.0.0.3
          !verify  = sender/callout=random
   deny    hosts   = V4NET.0.0.4
          !verify  = sender/callout=random,postmaster
   deny    hosts   = V4NET.0.0.5
          !verify  = sender/callout=1s,random
+          logwrite = sender_verify_failure_log_message=$sender_verify_failure_log_message
+          logwrite = sender_verify_failure_user_message=$sender_verify_failure_user_message
   deny   hosts    = V4NET.0.0.6
          !verify  = sender/callout=postmaster_mailfrom=pmsend@a.domain
   deny    hosts   = V4NET.0.0.9

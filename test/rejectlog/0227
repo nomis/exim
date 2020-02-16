@@ -8,7 +8,7 @@
 1999-03-02 09:44:33 H=[V4NET.0.0.1] U=root F=<uncheckable@localhost1> rejected RCPT <z@test.ex>: Sender verify failed
 1999-03-02 09:44:33 H=[V4NET.0.0.3] U=root F=<uncheckable@localhost1> rejected RCPT <z@remote.domain>: response to "RCPT TO:<z@remote.domain>" from 127.0.0.1 [127.0.0.1] was: 550 Recipient not liked
 1999-03-02 09:44:33 H=[V4NET.0.0.3] U=root F=<uncheckable@localhost1> rejected RCPT <z@remote.domain>: response to "RCPT TO:<z@remote.domain>" from 127.0.0.1 [127.0.0.1] was: 550-Recipient not liked on two lines\n550 Here's the second
-1999-03-02 09:44:33 H=[V4NET.0.0.3] U=root F=<uncheckable@localhost1> temporarily rejected RCPT <z@remote.domain>: Could not complete recipient verify callout
+1999-03-02 09:44:33 H=[V4NET.0.0.3] U=root F=<uncheckable@localhost1> temporarily rejected RCPT <z@remote.domain>: could not connect to ip4.ip4.ip4.ip4 [ip4.ip4.ip4.ip4]: Connection refused
 1999-03-02 09:44:33 10HmaX-0005vi-00 H=[V4NET.0.0.4] U=root F=<uncheckable@localhost1> rejected after DATA: there is no valid sender in any header line
 Envelope-from: <uncheckable@localhost1>
 Envelope-to: <z@remote.domain>

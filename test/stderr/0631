@@ -1,0 +1,1529 @@
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying ok@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering ok@localhost
+Attempting full verification using callout
+callout cache: no domain record found for localhost
+callout cache: no address record found for ok@localhost
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP<< 250 OK
+  SMTP>> RCPT TO:<ok@localhost>
+  SMTP<< 250 OK
+  SMTP>> QUIT
+wrote callout cache domain record:
+  result=1 postmaster=0 random=0
+wrote positive callout cache address record
+LOG: MAIN
+  ------------------------------------------------------------
+created log directory TESTSUITE/spool/log
+LOG: MAIN
+  acl_m_verify=accept
+LOG: MAIN
+  recipient=ok@localhost
+LOG: MAIN
+  recipient_verify_failure=
+LOG: MAIN
+  recipient_verify_failure_log_message=
+LOG: MAIN
+  recipient_verify_failure_user_message=
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying ok@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering ok@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: found address record for ok@localhost
+callout cache: address record is positive
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=accept
+LOG: MAIN
+  recipient=ok@localhost
+LOG: MAIN
+  recipient_verify_failure=
+LOG: MAIN
+  recipient_verify_failure_log_message=
+LOG: MAIN
+  recipient_verify_failure_user_message=
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying ok-timeout@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering ok-timeout@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: no address record found for ok-timeout@localhost
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP<< 250 OK
+  SMTP>> RCPT TO:<ok-timeout@localhost>
+  SMTP<< 250 OK
+  SMTP>> QUIT
+wrote callout cache domain record:
+  result=1 postmaster=0 random=0
+wrote positive callout cache address record
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=accept
+LOG: MAIN
+  recipient=ok-timeout@localhost
+LOG: MAIN
+  recipient_verify_failure=
+LOG: MAIN
+  recipient_verify_failure_log_message=
+LOG: MAIN
+  recipient_verify_failure_user_message=
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying ok-timeout@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering ok-timeout@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: found address record for ok-timeout@localhost
+callout cache: address record is positive
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=accept
+LOG: MAIN
+  recipient=ok-timeout@localhost
+LOG: MAIN
+  recipient_verify_failure=
+LOG: MAIN
+  recipient_verify_failure_log_message=
+LOG: MAIN
+  recipient_verify_failure_user_message=
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-rcpt@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-rcpt@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: no address record found for deny-rcpt@localhost
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP<< 250 OK
+  SMTP>> RCPT TO:<deny-rcpt@localhost>
+  SMTP<< 550 REJECTED
+  SMTP>> QUIT
+wrote callout cache domain record:
+  result=1 postmaster=0 random=0
+wrote negative callout cache address record
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient=deny-rcpt@localhost
+LOG: MAIN
+  recipient_verify_failure=recipient
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "RCPT TO:<deny-rcpt@localhost>" from 127.0.0.1 [127.0.0.1] was: 550 REJECTED
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <deny-rcpt@localhost>\nCallout verification failed:\n550 REJECTED
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-rcpt@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-rcpt@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: found address record for deny-rcpt@localhost
+callout cache: address record is negative
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient=deny-rcpt@localhost
+LOG: MAIN
+  recipient_verify_failure=recipient
+LOG: MAIN
+  recipient_verify_failure_log_message=Previous (cached) callout verification failure
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <deny-rcpt@localhost>\nPrevious (cached) callout verification failure
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-rcpt@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-rcpt@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: no address record found for defer-rcpt@localhost
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP<< 250 OK
+  SMTP>> RCPT TO:<defer-rcpt@localhost>
+  SMTP<< 450 TEMPORARILY REJECTED 1
+  SMTP>> QUIT
+wrote callout cache domain record:
+  result=1 postmaster=0 random=0
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-rcpt@localhost
+LOG: MAIN
+  recipient_verify_failure=recipient
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "RCPT TO:<defer-rcpt@localhost>" from 127.0.0.1 [127.0.0.1] was: 450 TEMPORARILY REJECTED 1
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-rcpt@localhost>\nCallout verification failed:\n450 TEMPORARILY REJECTED 1
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-rcpt@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-rcpt@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: no address record found for defer-rcpt@localhost
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP<< 250 OK
+  SMTP>> RCPT TO:<defer-rcpt@localhost>
+  SMTP<< 450 TEMPORARILY REJECTED 2
+  SMTP>> QUIT
+wrote callout cache domain record:
+  result=1 postmaster=0 random=0
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-rcpt@localhost
+LOG: MAIN
+  recipient_verify_failure=recipient
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "RCPT TO:<defer-rcpt@localhost>" from 127.0.0.1 [127.0.0.1] was: 450 TEMPORARILY REJECTED 2
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-rcpt@localhost>\nCallout verification failed:\n450 TEMPORARILY REJECTED 2
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-rcpt-timeout@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-rcpt-timeout@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: no address record found for defer-rcpt-timeout@localhost
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP<< 250 OK
+  SMTP>> RCPT TO:<defer-rcpt-timeout@localhost>
+SMTP timeout
+wrote callout cache domain record:
+  result=1 postmaster=0 random=0
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-rcpt-timeout@localhost
+LOG: MAIN
+  recipient_verify_failure=recipient
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete sender verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after RCPT TO:<defer-rcpt-timeout@localhost>
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-rcpt-timeout@localhost>\nCould not complete recipient verify callout
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-rcpt-timeout@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-rcpt-timeout@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: no address record found for defer-rcpt-timeout@localhost
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP<< 250 OK
+  SMTP>> RCPT TO:<defer-rcpt-timeout@localhost>
+SMTP timeout
+wrote callout cache domain record:
+  result=1 postmaster=0 random=0
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-rcpt-timeout@localhost
+LOG: MAIN
+  recipient_verify_failure=recipient
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete sender verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after RCPT TO:<defer-rcpt-timeout@localhost>
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-rcpt-timeout@localhost>\nCould not complete recipient verify callout
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-rcpt-closed@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-rcpt-closed@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: no address record found for defer-rcpt-closed@localhost
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP<< 250 OK
+  SMTP>> RCPT TO:<defer-rcpt-closed@localhost>
+  SMTP>> QUIT
+wrote callout cache domain record:
+  result=1 postmaster=0 random=0
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-rcpt-closed@localhost
+LOG: MAIN
+  recipient_verify_failure=recipient
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "RCPT TO:<defer-rcpt-closed@localhost>" from 127.0.0.1 [127.0.0.1] was: connection dropped
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-rcpt-closed@localhost>\nCallout verification failed:\nconnection dropped
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-rcpt-closed@localhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-rcpt-closed@localhost
+Attempting full verification using callout
+callout cache: found domain record for localhost
+callout cache: no address record found for defer-rcpt-closed@localhost
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP<< 250 OK
+  SMTP>> RCPT TO:<defer-rcpt-closed@localhost>
+  SMTP>> QUIT
+wrote callout cache domain record:
+  result=1 postmaster=0 random=0
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-rcpt-closed@localhost
+LOG: MAIN
+  recipient_verify_failure=recipient
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "RCPT TO:<defer-rcpt-closed@localhost>" from 127.0.0.1 [127.0.0.1] was: connection dropped
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-rcpt-closed@localhost>\nCallout verification failed:\nconnection dropped
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying fail-connect@otherhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering fail-connect@otherhost
+Attempting full verification using callout
+callout cache: no domain record found for otherhost
+callout cache: no address record found for fail-connect@otherhost
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... failed: Connection refused
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=fail-connect@otherhost
+LOG: MAIN
+  recipient_verify_failure=
+LOG: MAIN
+  recipient_verify_failure_log_message=could not connect to 127.0.0.1 [127.0.0.1]: Connection refused
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <fail-connect@otherhost>\nCould not complete recipient verify callout
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying fail-connect@otherhost
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering fail-connect@otherhost
+Attempting full verification using callout
+callout cache: no domain record found for otherhost
+callout cache: no address record found for fail-connect@otherhost
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... failed: Connection refused
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=fail-connect@otherhost
+LOG: MAIN
+  recipient_verify_failure=
+LOG: MAIN
+  recipient_verify_failure_log_message=could not connect to 127.0.0.1 [127.0.0.1]: Connection refused
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <fail-connect@otherhost>\nCould not complete recipient verify callout
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-connect@otherhost10
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-connect@otherhost10
+Attempting full verification using callout
+callout cache: no domain record found for otherhost10
+callout cache: no address record found for deny-connect@otherhost10
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 500 REJECTED
+  SMTP>> QUIT
+wrote callout cache domain record:
+  result=3 postmaster=0 random=0
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient=deny-connect@otherhost10
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "initial connection" from 127.0.0.1 [127.0.0.1] was: 500 REJECTED
+LOG: MAIN
+  recipient_verify_failure_user_message=Callback setup failed while verifying <deny-connect@otherhost10>\nCallout verification failed:\n500 REJECTED
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-connect@otherhost10
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-connect@otherhost10
+Attempting full verification using callout
+callout cache: found domain record for otherhost10
+callout cache: domain gave initial rejection, or does not accept HELO or MAIL FROM:<>
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient=deny-connect@otherhost10
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Previous (cached) callout result reused
+LOG: MAIN
+  recipient_verify_failure_user_message=Callback setup failed while verifying <deny-connect@otherhost10>\n(result of an earlier callout reused).
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-connect@otherhost11
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-connect@otherhost11
+Attempting full verification using callout
+callout cache: no domain record found for otherhost11
+callout cache: no address record found for defer-connect@otherhost11
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 400 TEMPORARILY REJECTED 1
+  SMTP>> QUIT
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-connect@otherhost11
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "initial connection" from 127.0.0.1 [127.0.0.1] was: 400 TEMPORARILY REJECTED 1
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-connect@otherhost11>\nCallout verification failed:\n400 TEMPORARILY REJECTED 1
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-connect@otherhost11
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-connect@otherhost11
+Attempting full verification using callout
+callout cache: no domain record found for otherhost11
+callout cache: no address record found for defer-connect@otherhost11
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 400 TEMPORARILY REJECTED 2
+  SMTP>> QUIT
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-connect@otherhost11
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "initial connection" from 127.0.0.1 [127.0.0.1] was: 400 TEMPORARILY REJECTED 2
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-connect@otherhost11>\nCallout verification failed:\n400 TEMPORARILY REJECTED 2
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-connect-timeout@otherhost14
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-connect-timeout@otherhost14
+Attempting full verification using callout
+callout cache: no domain record found for otherhost14
+callout cache: no address record found for defer-connect-timeout@otherhost14
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+SMTP timeout
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-connect-timeout@otherhost14
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete sender verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after initial connection
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-connect-timeout@otherhost14>\nCould not complete recipient verify callout
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-connect-timeout@otherhost14
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-connect-timeout@otherhost14
+Attempting full verification using callout
+callout cache: no domain record found for otherhost14
+callout cache: no address record found for defer-connect-timeout@otherhost14
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+SMTP timeout
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-connect-timeout@otherhost14
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete sender verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after initial connection
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-connect-timeout@otherhost14>\nCould not complete recipient verify callout
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-connect-closed@otherhost14
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-connect-closed@otherhost14
+Attempting full verification using callout
+callout cache: no domain record found for otherhost14
+callout cache: no address record found for defer-connect-closed@otherhost14
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP>> QUIT
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-connect-closed@otherhost14
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "initial connection" from 127.0.0.1 [127.0.0.1] was: connection dropped
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-connect-closed@otherhost14>\nCallout verification failed:\nconnection dropped
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-connect-closed@otherhost14
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-connect-closed@otherhost14
+Attempting full verification using callout
+callout cache: no domain record found for otherhost14
+callout cache: no address record found for defer-connect-closed@otherhost14
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP>> QUIT
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-connect-closed@otherhost14
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "initial connection" from 127.0.0.1 [127.0.0.1] was: connection dropped
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-connect-closed@otherhost14>\nCallout verification failed:\nconnection dropped
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-ehlo@otherhost12
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-ehlo@otherhost12
+Attempting full verification using callout
+callout cache: no domain record found for otherhost12
+callout cache: no address record found for deny-ehlo@otherhost12
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 500 REJECTED A
+  SMTP>> HELO myhost.test.ex
+  SMTP<< 500 REJECTED B
+  SMTP>> QUIT
+wrote callout cache domain record:
+  result=3 postmaster=0 random=0
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient=deny-ehlo@otherhost12
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "HELO myhost.test.ex" from 127.0.0.1 [127.0.0.1] was: 500 REJECTED B
+LOG: MAIN
+  recipient_verify_failure_user_message=Callback setup failed while verifying <deny-ehlo@otherhost12>\nCallout verification failed:\n500 REJECTED B
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-ehlo@otherhost12
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-ehlo@otherhost12
+Attempting full verification using callout
+callout cache: found domain record for otherhost12
+callout cache: domain gave initial rejection, or does not accept HELO or MAIL FROM:<>
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient=deny-ehlo@otherhost12
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Previous (cached) callout result reused
+LOG: MAIN
+  recipient_verify_failure_user_message=Callback setup failed while verifying <deny-ehlo@otherhost12>\n(result of an earlier callout reused).
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-ehlo@otherhost13
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-ehlo@otherhost13
+Attempting full verification using callout
+callout cache: no domain record found for otherhost13
+callout cache: no address record found for defer-ehlo@otherhost13
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 400 TEMPORARILY REJECTED 1A
+  SMTP>> HELO myhost.test.ex
+  SMTP<< 400 TEMPORARILY REJECTED 1B
+  SMTP>> QUIT
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-ehlo@otherhost13
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "HELO myhost.test.ex" from 127.0.0.1 [127.0.0.1] was: 400 TEMPORARILY REJECTED 1B
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-ehlo@otherhost13>\nCallout verification failed:\n400 TEMPORARILY REJECTED 1B
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-ehlo@otherhost13
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-ehlo@otherhost13
+Attempting full verification using callout
+callout cache: no domain record found for otherhost13
+callout cache: no address record found for defer-ehlo@otherhost13
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 400 TEMPORARILY REJECTED 2A
+  SMTP>> HELO myhost.test.ex
+  SMTP<< 400 TEMPORARILY REJECTED 2B
+  SMTP>> QUIT
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-ehlo@otherhost13
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "HELO myhost.test.ex" from 127.0.0.1 [127.0.0.1] was: 400 TEMPORARILY REJECTED 2B
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-ehlo@otherhost13>\nCallout verification failed:\n400 TEMPORARILY REJECTED 2B
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-ehlo-timeout@otherhost15
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-ehlo-timeout@otherhost15
+Attempting full verification using callout
+callout cache: no domain record found for otherhost15
+callout cache: no address record found for defer-ehlo-timeout@otherhost15
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+SMTP timeout
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-ehlo-timeout@otherhost15
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete sender verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after EHLO myhost.test.ex
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-ehlo-timeout@otherhost15>\nCould not complete recipient verify callout
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-ehlo-timeout@otherhost15
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-ehlo-timeout@otherhost15
+Attempting full verification using callout
+callout cache: no domain record found for otherhost15
+callout cache: no address record found for defer-ehlo-timeout@otherhost15
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+SMTP timeout
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-ehlo-timeout@otherhost15
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete sender verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after EHLO myhost.test.ex
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-ehlo-timeout@otherhost15>\nCould not complete recipient verify callout
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-ehlo-closed@otherhost15
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-ehlo-closed@otherhost15
+Attempting full verification using callout
+callout cache: no domain record found for otherhost15
+callout cache: no address record found for defer-ehlo-closed@otherhost15
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP>> QUIT
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-ehlo-closed@otherhost15
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "EHLO myhost.test.ex" from 127.0.0.1 [127.0.0.1] was: connection dropped
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-ehlo-closed@otherhost15>\nCallout verification failed:\nconnection dropped
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-ehlo-closed@otherhost15
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-ehlo-closed@otherhost15
+Attempting full verification using callout
+callout cache: no domain record found for otherhost15
+callout cache: no address record found for defer-ehlo-closed@otherhost15
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP>> QUIT
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-ehlo-closed@otherhost15
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "EHLO myhost.test.ex" from 127.0.0.1 [127.0.0.1] was: connection dropped
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-ehlo-closed@otherhost15>\nCallout verification failed:\nconnection dropped
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-helo-timeout@otherhost16
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-helo-timeout@otherhost16
+Attempting full verification using callout
+callout cache: no domain record found for otherhost16
+callout cache: no address record found for defer-helo-timeout@otherhost16
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 400 USE HELO
+  SMTP>> HELO myhost.test.ex
+SMTP timeout
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-helo-timeout@otherhost16
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete sender verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after HELO myhost.test.ex
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-helo-timeout@otherhost16>\nCould not complete recipient verify callout
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-helo-timeout@otherhost16
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-helo-timeout@otherhost16
+Attempting full verification using callout
+callout cache: no domain record found for otherhost16
+callout cache: no address record found for defer-helo-timeout@otherhost16
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 400 USE HELO
+  SMTP>> HELO myhost.test.ex
+SMTP timeout
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-helo-timeout@otherhost16
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete sender verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after HELO myhost.test.ex
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-helo-timeout@otherhost16>\nCould not complete recipient verify callout
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-helo-closed@otherhost16
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-helo-closed@otherhost16
+Attempting full verification using callout
+callout cache: no domain record found for otherhost16
+callout cache: no address record found for defer-helo-closed@otherhost16
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 400 USE HELO
+  SMTP>> HELO myhost.test.ex
+  SMTP>> QUIT
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-helo-closed@otherhost16
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "HELO myhost.test.ex" from 127.0.0.1 [127.0.0.1] was: connection dropped
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-helo-closed@otherhost16>\nCallout verification failed:\nconnection dropped
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-helo-closed@otherhost16
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-helo-closed@otherhost16
+Attempting full verification using callout
+callout cache: no domain record found for otherhost16
+callout cache: no address record found for defer-helo-closed@otherhost16
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 400 USE HELO
+  SMTP>> HELO myhost.test.ex
+  SMTP>> QUIT
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-helo-closed@otherhost16
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "HELO myhost.test.ex" from 127.0.0.1 [127.0.0.1] was: connection dropped
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-helo-closed@otherhost16>\nCallout verification failed:\nconnection dropped
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-mail@otherhost20
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-mail@otherhost20
+Attempting full verification using callout
+callout cache: no domain record found for otherhost20
+callout cache: no address record found for deny-mail@otherhost20
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP<< 550 REJECTED
+  SMTP>> QUIT
+wrote callout cache domain record:
+  result=3 postmaster=0 random=0
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient=deny-mail@otherhost20
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "MAIL FROM:<>" from 127.0.0.1 [127.0.0.1] was: 550 REJECTED
+LOG: MAIN
+  recipient_verify_failure_user_message=Callback setup failed while verifying <deny-mail@otherhost20>\nCallout verification failed:\n550 REJECTED
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-mail@otherhost20
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-mail@otherhost20
+Attempting full verification using callout
+callout cache: found domain record for otherhost20
+callout cache: domain gave initial rejection, or does not accept HELO or MAIL FROM:<>
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient=deny-mail@otherhost20
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Previous (cached) callout result reused
+LOG: MAIN
+  recipient_verify_failure_user_message=Callback setup failed while verifying <deny-mail@otherhost20>\n(result of an earlier callout reused).
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-mail@otherhost40
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-mail@otherhost40
+Attempting full verification using callout
+callout cache: no domain record found for otherhost40
+callout cache: no address record found for defer-mail@otherhost40
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP<< 450 TEMPORARILY REJECTED 1
+  SMTP>> QUIT
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-mail@otherhost40
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "MAIL FROM:<>" from 127.0.0.1 [127.0.0.1] was: 450 TEMPORARILY REJECTED 1
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-mail@otherhost40>\nCallout verification failed:\n450 TEMPORARILY REJECTED 1
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-mail@otherhost40
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-mail@otherhost40
+Attempting full verification using callout
+callout cache: no domain record found for otherhost40
+callout cache: no address record found for defer-mail@otherhost40
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP<< 450 TEMPORARILY REJECTED 2
+  SMTP>> QUIT
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-mail@otherhost40
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "MAIL FROM:<>" from 127.0.0.1 [127.0.0.1] was: 450 TEMPORARILY REJECTED 2
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-mail@otherhost40>\nCallout verification failed:\n450 TEMPORARILY REJECTED 2
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-mail-timeout@otherhost41
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-mail-timeout@otherhost41
+Attempting full verification using callout
+callout cache: no domain record found for otherhost41
+callout cache: no address record found for defer-mail-timeout@otherhost41
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+SMTP timeout
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-mail-timeout@otherhost41
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete sender verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after MAIL FROM:<>
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-mail-timeout@otherhost41>\nCould not complete recipient verify callout
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-mail-timeout@otherhost41
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-mail-timeout@otherhost41
+Attempting full verification using callout
+callout cache: no domain record found for otherhost41
+callout cache: no address record found for defer-mail-timeout@otherhost41
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+SMTP timeout
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-mail-timeout@otherhost41
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=Could not complete sender verify callout: 127.0.0.1 [127.0.0.1] : SMTP timeout after MAIL FROM:<>
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-mail-timeout@otherhost41>\nCould not complete recipient verify callout
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-mail-closed@otherhost41
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-mail-closed@otherhost41
+Attempting full verification using callout
+callout cache: no domain record found for otherhost41
+callout cache: no address record found for defer-mail-closed@otherhost41
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP>> QUIT
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-mail-closed@otherhost41
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "MAIL FROM:<>" from 127.0.0.1 [127.0.0.1] was: connection dropped
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-mail-closed@otherhost41>\nCallout verification failed:\nconnection dropped
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying defer-mail-closed@otherhost41
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering defer-mail-closed@otherhost41
+Attempting full verification using callout
+callout cache: no domain record found for otherhost41
+callout cache: no address record found for defer-mail-closed@otherhost41
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP>> QUIT
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=defer-mail-closed@otherhost41
+LOG: MAIN
+  recipient_verify_failure=mail
+LOG: MAIN
+  recipient_verify_failure_log_message=response to "MAIL FROM:<>" from 127.0.0.1 [127.0.0.1] was: connection dropped
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <defer-mail-closed@otherhost41>\nCallout verification failed:\nconnection dropped
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying postmaster@no.route
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering postmaster@no.route
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=deny
+LOG: MAIN
+  recipient=postmaster@no.route
+LOG: MAIN
+  recipient_verify_failure=route
+LOG: MAIN
+  recipient_verify_failure_log_message=Unrouteable address
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <postmaster@no.route>\nUnrouteable address
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying overall-timeout@otherhost200
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering overall-timeout@otherhost200
+Attempting full verification using callout
+callout cache: no domain record found for otherhost200
+callout cache: no address record found for overall-timeout@otherhost200
+overall timeout for callout exceeded
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=overall-timeout@otherhost200
+LOG: MAIN
+  recipient_verify_failure=timeout
+LOG: MAIN
+  recipient_verify_failure_log_message=overall timeout exceeded
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <overall-timeout@otherhost200>\nCould not complete recipient verify callout
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying connect-timeout@otherhost201
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering connect-timeout@otherhost201
+Attempting full verification using callout
+callout cache: no domain record found for otherhost201
+callout cache: no address record found for connect-timeout@otherhost201
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... failed: Connection timed out (timeout=1w4d13h46m39s)
+LOG: MAIN
+  ------------------------------------------------------------
+LOG: MAIN
+  acl_m_verify=defer
+LOG: MAIN
+  recipient=connect-timeout@otherhost201
+LOG: MAIN
+  recipient_verify_failure=
+LOG: MAIN
+  recipient_verify_failure_log_message=could not connect to 127.0.0.1 [127.0.0.1]: Connection timed out
+LOG: MAIN
+  recipient_verify_failure_user_message=Verification failed for <connect-timeout@otherhost201>\nCould not complete recipient verify callout
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>

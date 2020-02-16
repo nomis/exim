@@ -41,12 +41,7 @@
 550 bad@domain: Unrouteable address
 250 OK
 451-could not connect to V4NET.0.0.0 [V4NET.0.0.0]: Network Error
-451-Could not complete sender verify callout for <callout@x>.
-451-The mail server(s) for the domain may be temporarily unreachable, or
-451-they may be permanently unreachable from this server. In the latter case,
-451-you need to change the address or create an MX record for its domain
-451-if it is supposed to be generally accessible from the Internet.
-451 Talk to your mail administrator for details.
+451 Could not connect to V4NET.0.0.0
 250 Reset OK
 250 OK
 250 Accepted

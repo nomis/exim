@@ -42,6 +42,63 @@ static uschar cutthrough_response(char, uschar **);
 
 
 /*************************************************
+*           Copy error to failure strings        *
+*************************************************/
+
+/* This function is used when a verify fails or defers, to update the message
+strings available to ACLs.
+
+Arguments:
+  is_recipient  this is a recipient address, otherwise it's a sender address
+  reason        the reason for failure
+  addr          the failing address item (for messages)
+
+Returns:      nothing
+*/
+
+static void
+set_failure_info(BOOL is_recipient, uschar *reason, address_item *addr)
+{
+uschar **failure_ptr = is_recipient?
+  &recipient_verify_failure : &sender_verify_failure;
+uschar **failure_log_message_ptr = is_recipient?
+  &recipient_verify_failure_log_message : &sender_verify_failure_log_message;
+uschar **failure_user_message_ptr = is_recipient?
+  &recipient_verify_failure_user_message : &sender_verify_failure_user_message;
+
+*failure_ptr = reason;
+
+if (addr == NULL)
+  {
+  *failure_log_message_ptr = NULL;
+  *failure_user_message_ptr = NULL;
+  }
+else
+  {
+  *failure_log_message_ptr = addr->message;
+  if (addr->user_message == NULL)
+    {
+    *failure_user_message_ptr = NULL;
+    }
+  else
+    {
+    *failure_user_message_ptr = string_sprintf(
+      testflag(addr, af_verify_pmfail)?
+        "Postmaster verification failed while checking <%s>\n%s"
+        :
+      testflag(addr, af_verify_nsfail)?
+        "Callback setup failed while verifying <%s>\n%s"
+        :
+        "Verification failed for <%s>\n%s",
+      addr->address,
+      addr->user_message);
+    }
+  }
+}
+
+
+
+/*************************************************
 *          Retrieve a callout cache record       *
 *************************************************/
 
@@ -165,8 +222,7 @@ uschar *address_key;
 uschar *from_address;
 uschar *random_local_part = NULL;
 const uschar *save_deliver_domain = deliver_domain;
-uschar **failure_ptr = is_recipient?
-  &recipient_verify_failure : &sender_verify_failure;
+uschar *failure_reason = NULL;
 open_db dbblock;
 open_db *dbm_file = NULL;
 dbdata_callout_cache new_domain_record;
@@ -261,9 +317,10 @@ if (dbm_file != NULL)
         debug_printf("callout cache: domain gave initial rejection, or "
           "does not accept HELO or MAIL FROM:<>\n");
       setflag(addr, af_verify_nsfail);
+      addr->message = US"Previous (cached) callout result reused";
       addr->user_message = US"(result of an earlier callout reused).";
       yield = FAIL;
-      *failure_ptr = US"mail";
+      failure_reason = US"mail";
       goto END_CALLOUT;
       }
 
@@ -310,8 +367,9 @@ if (dbm_file != NULL)
           debug_printf("callout cache: domain does not accept "
             "RCPT TO:<postmaster@domain>\n");
         yield = FAIL;
-        *failure_ptr = US"postmaster";
+        failure_reason = US"postmaster";
         setflag(addr, af_verify_pmfail);
+        addr->message = US"Previous (cached) postmaster verification result reused";
         addr->user_message = US"(result of earlier verification reused).";
         goto END_CALLOUT;
         }
@@ -358,8 +416,9 @@ if (dbm_file != NULL)
       {
       HDEBUG(D_verify)
         debug_printf("callout cache: address record is negative\n");
-      addr->user_message = US"Previous (cached) callout verification failure";
-      *failure_ptr = US"recipient";
+      addr->message = US"Previous (cached) callout verification failure";
+      addr->user_message = addr->message;
+      failure_reason = US"recipient";
       yield = FAIL;
       }
     goto END_CALLOUT;
@@ -493,6 +552,8 @@ can do it there for the non-rcpt-verify case.  For this we keep an addresscount.
 		if (*resp == 0)
 		  Ustrcpy(resp, US"connection dropped");
 
+                failure_reason = US"recipient";
+
 		addr->message =
 		  string_sprintf("response to \"%s\" from %s [%s] was: %s",
 		    big_buffer, host->name, host->address,
@@ -559,6 +620,8 @@ can do it there for the non-rcpt-verify case.  For this we keep an addresscount.
     if (time(NULL) - callout_start_time >= callout_overall)
       {
       HDEBUG(D_verify) debug_printf("overall timeout for callout exceeded\n");
+      failure_reason = US"timeout";
+      addr->message = string_copy(US"overall timeout exceeded");
       break;
       }
 
@@ -622,6 +685,8 @@ can do it there for the non-rcpt-verify case.  For this we keep an addresscount.
       {
       addr->message = string_sprintf("could not connect to %s [%s]: %s",
           host->name, host->address, strerror(errno));
+      addr->user_message = is_recipient ? NULL
+          : string_sprintf("Could not connect to %s", host->address);
       transport_name = NULL;
       deliver_host = deliver_host_address = NULL;
       deliver_domain = save_deliver_domain;
@@ -915,7 +980,7 @@ can do it there for the non-rcpt-verify case.  For this we keep an addresscount.
 
     if (!done)
       {
-      *failure_ptr = US"mail";     /* At or before MAIL */
+      failure_reason = US"mail";     /* At or before MAIL */
       if (errno == 0 && responsebuffer[0] == '5')
         {
         setflag(addr, af_verify_nsfail);
@@ -997,7 +1062,7 @@ can do it there for the non-rcpt-verify case.  For this we keep an addresscount.
 
     if (!done)
       {
-      *failure_ptr = US"mail";     /* At or before MAIL */
+      failure_reason = US"mail";     /* At or before MAIL */
       if (errno == 0 && responsebuffer[0] == '5')
         {
         setflag(addr, af_verify_nsfail);
@@ -1028,6 +1093,7 @@ can do it there for the non-rcpt-verify case.  For this we keep an addresscount.
 				    &errstr), errstr)
 	 )
 	{
+        failure_reason = US"recipient";
 	addr->message = errstr;
 	errno = ERRNO_EXPANDFAIL;
 	setflag(addr, af_verify_nsfail);
@@ -1132,7 +1198,7 @@ can do it there for the non-rcpt-verify case.  For this we keep an addresscount.
 	   )  )
 	{
 	errno = ERRNO_EXPANDFAIL;
-	*failure_ptr = US"recipient";
+	failure_reason = US"recipient";
 	done = FALSE;
 	}
 	else
@@ -1146,10 +1212,11 @@ can do it there for the non-rcpt-verify case.  For this we keep an addresscount.
 
         if (done)
           new_address_record.result = ccache_accept;
-        else if (errno == 0 && responsebuffer[0] == '5')
+        else
           {
-          *failure_ptr = US"recipient";
-          new_address_record.result = ccache_reject;
+          failure_reason = US"recipient";
+          if (errno == 0 && responsebuffer[0] == '5')
+            new_address_record.result = ccache_reject;
           }
 
         /* Do postmaster check if requested; if a full check is required, we
@@ -1201,11 +1268,14 @@ can do it there for the non-rcpt-verify case.  For this we keep an addresscount.
 
           if (done)
             new_domain_record.postmaster_result = ccache_accept;
-          else if (errno == 0 && responsebuffer[0] == '5')
+          else
             {
-            *failure_ptr = US"postmaster";
-            setflag(addr, af_verify_pmfail);
-            new_domain_record.postmaster_result = ccache_reject;
+            failure_reason = US"postmaster";
+            if (errno == 0 && responsebuffer[0] == '5')
+              {
+              setflag(addr, af_verify_pmfail);
+              new_domain_record.postmaster_result = ccache_reject;
+              }
             }
           }
         }           /* Random not accepted */
@@ -1227,12 +1297,14 @@ can do it there for the non-rcpt-verify case.  For this we keep an addresscount.
         {
         HDEBUG(D_verify) debug_printf("SMTP timeout\n");
         send_quit = FALSE;
+        addr->message = string_sprintf("Could not complete sender verify callout: %s [%s] : SMTP timeout after %s", host->name, host->address, big_buffer);
         }
 #ifdef EXPERIMENTAL_INTERNATIONAL
       else if (errno == ERRNO_UTF8_FWD)
 	{
 	extern int acl_where;	/* src/acl.c */
 	errno = 0;
+        failure_reason = US"mail";
 	addr->message = string_sprintf(
 	    "response to \"%s\" from %s [%s] did not include SMTPUTF8",
             big_buffer, host->name, host->address);
@@ -1373,8 +1445,8 @@ if (done)
   }    /* done */
 
 /* Failure to connect to any host, or any response other than 2xx or 5xx is a
-temporary error. If there was only one host, and a response was received, leave
-it alone if supplying details. Otherwise, give a generic response. */
+temporary error. If a response was received, leave it alone if supplying details.
+Otherwise, give a generic response. */
 
 else   /* !done */
   {
@@ -1382,19 +1454,23 @@ else   /* !done */
     is_recipient? "recipient" : "sender");
   yield = DEFER;
 
-  if (host_list->next != NULL || addr->message == NULL) addr->message = dullmsg;
+  if (addr->message == NULL)
+    {
+    addr->message = dullmsg;
+    }
 
-  addr->user_message = (!smtp_return_error_details)? dullmsg :
-    string_sprintf("%s for <%s>.\n"
-      "The mail server(s) for the domain may be temporarily unreachable, or\n"
-      "they may be permanently unreachable from this server. In the latter case,\n%s",
-      dullmsg, addr->address,
-      is_recipient?
-        "the address will never be accepted."
-        :
-        "you need to change the address or create an MX record for its domain\n"
-        "if it is supposed to be generally accessible from the Internet.\n"
-        "Talk to your mail administrator for details.");
+  if (addr->user_message == NULL)
+    addr->user_message = (!smtp_return_error_details)? dullmsg :
+      string_sprintf("%s for <%s>.\n"
+        "The mail server(s) for the domain may be temporarily unreachable, or\n"
+        "they may be permanently unreachable from this server. In the latter case,\n%s",
+        dullmsg, addr->address,
+        is_recipient?
+          "the address will never be accepted."
+          :
+          "you need to change the address or create an MX record for its domain\n"
+          "if it is supposed to be generally accessible from the Internet.\n"
+          "Talk to your mail administrator for details.");
 
   /* Force a specific error code */
 
@@ -1404,6 +1480,8 @@ else   /* !done */
 /* Come here from within the cache-reading code on fast-track exit. */
 
 END_CALLOUT:
+set_failure_info(is_recipient, failure_reason, addr);
+
 if (dbm_file != NULL) dbfn_close(dbm_file);
 return yield;
 }
@@ -1721,7 +1799,6 @@ return yield;
 
 
 
-
 /**************************************************
 * printf that automatically handles TLS if needed *
 ***************************************************/
@@ -1828,8 +1905,6 @@ address_item *addr_new = NULL;
 address_item *addr_remote = NULL;
 address_item *addr_local = NULL;
 address_item *addr_succeed = NULL;
-uschar **failure_ptr = is_recipient?
-  &recipient_verify_failure : &sender_verify_failure;
 uschar *ko_prefix, *cr;
 uschar *address = vaddr->address;
 uschar *save_sender;
@@ -1837,7 +1912,7 @@ uschar null_sender[] = { 0 };             /* Ensure writeable memory */
 
 /* Clear, just in case */
 
-*failure_ptr = NULL;
+set_failure_info(is_recipient, NULL, NULL);
 
 /* Set up a prefix and suffix for error message which allow us to use the same
 output statements both in EXPN mode (where an SMTP response is needed) and when
@@ -1859,7 +1934,7 @@ if (parse_find_at(address) == NULL)
     if (f != NULL)
       respond_printf(f, "%sA domain is required for \"%s\"%s\n",
         ko_prefix, address, cr);
-    *failure_ptr = US"qualify";
+    set_failure_info(is_recipient, US"qualify", NULL);
     return FAIL;
     }
   address = rewrite_address_qualify(address, is_recipient);
@@ -2126,7 +2201,7 @@ while (addr_new != NULL)
 
   /* Otherwise, any failure is a routing failure */
 
-  else *failure_ptr = US"route";
+  else set_failure_info(is_recipient, US"route", addr);
 
   /* A router may return REROUTED if it has set up a child address as a result
   of a change of domain name (typically from widening). In this case we always

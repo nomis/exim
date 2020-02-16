@@ -1,0 +1,503 @@
+# callout verification (with result message and caching)
+need_ipv4
+# Accepted
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+250 OK
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<ok@localhost>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Cached
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<ok@localhost>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test timeout (QUIT)
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+250 OK
+QUIT
+*sleep 2
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<ok-timeout@localhost>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Cached
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<ok-timeout@localhost>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test reject (RCPT)
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+550 REJECTED
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<deny-rcpt@localhost>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Cached
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<deny-rcpt@localhost>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test temporary reject (RCPT)
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+450 TEMPORARILY REJECTED 1
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-rcpt@localhost>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Not cached
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+450 TEMPORARILY REJECTED 2
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-rcpt@localhost>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test timeout (RCPT)
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+*sleep 2
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-rcpt-timeout@localhost>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Not cached
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+*sleep 2
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-rcpt-timeout@localhost>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test closed connection (RCPT)
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-rcpt-closed@localhost>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Not cached
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-rcpt-closed@localhost>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Failure to connect
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<fail-connect@otherhost>
+RCPT TO:<z@test.ex>
+QUIT
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<fail-connect@otherhost>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test reject (connect)
+server PORT_S
+500 REJECTED
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<deny-connect@otherhost10>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Cached
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<deny-connect@otherhost10>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test temporary reject (connect)
+server PORT_S
+400 TEMPORARILY REJECTED 1
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-connect@otherhost11>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Not cached
+server PORT_S
+400 TEMPORARILY REJECTED 2
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-connect@otherhost11>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test timeout (connect banner)
+server PORT_S
+*sleep 2
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-connect-timeout@otherhost14>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Not cached
+server PORT_S
+*sleep 2
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-connect-timeout@otherhost14>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test connection closed (connect banner)
+server PORT_S
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-connect-closed@otherhost14>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Not cached
+server PORT_S
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-connect-closed@otherhost14>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test reject (EHLO)
+server PORT_S
+220 Server ready
+EHLO
+500 REJECTED A
+HELO
+500 REJECTED B
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<deny-ehlo@otherhost12>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Cached
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<deny-ehlo@otherhost12>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test temporary reject (EHLO)
+server PORT_S
+220 Server ready
+EHLO
+400 TEMPORARILY REJECTED 1A
+HELO
+400 TEMPORARILY REJECTED 1B
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-ehlo@otherhost13>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Not cached
+server PORT_S
+220 Server ready
+EHLO
+400 TEMPORARILY REJECTED 2A
+HELO
+400 TEMPORARILY REJECTED 2B
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-ehlo@otherhost13>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test timeout (EHLO)
+server PORT_S
+220 Server ready
+EHLO
+*sleep 2
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-ehlo-timeout@otherhost15>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Not cached
+server PORT_S
+220 Server ready
+EHLO
+*sleep 2
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-ehlo-timeout@otherhost15>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test closed connection (EHLO)
+server PORT_S
+220 Server ready
+EHLO
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-ehlo-closed@otherhost15>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Not cached
+server PORT_S
+220 Server ready
+EHLO
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-ehlo-closed@otherhost15>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test timeout (HELO)
+server PORT_S
+220 Server ready
+EHLO
+400 USE HELO
+HELO
+*sleep 2
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-helo-timeout@otherhost16>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Not cached
+server PORT_S
+220 Server ready
+EHLO
+400 USE HELO
+HELO
+*sleep 2
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-helo-timeout@otherhost16>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test closed connection (HELO)
+server PORT_S
+220 Server ready
+EHLO
+400 USE HELO
+HELO
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-helo-closed@otherhost16>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Not cached
+server PORT_S
+220 Server ready
+EHLO
+400 USE HELO
+HELO
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-helo-closed@otherhost16>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test reject (MAIL)
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+550 REJECTED
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<deny-mail@otherhost20>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Cached
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<deny-mail@otherhost20>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test temporary reject (MAIL)
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+450 TEMPORARILY REJECTED 1
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-mail@otherhost40>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Not cached
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+450 TEMPORARILY REJECTED 2
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-mail@otherhost40>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test timeout (MAIL)
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+*sleep 2
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-mail-timeout@otherhost41>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Not cached
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+*sleep 2
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-mail-timeout@otherhost41>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test connection closed (MAIL)
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-mail-closed@otherhost41>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Not cached
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<defer-mail-closed@otherhost41>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# No route
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<postmaster@no.route>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Overall timeout
+sudo exim -DCALLOUT_MAXWAIT=0s -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<overall-timeout@otherhost200>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Connect timeout
+sudo exim -DCALLOUT_CONNECT=999999s -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<connect-timeout@otherhost201>
+RCPT TO:<z@test.ex>
+QUIT
+****

@@ -116,7 +116,7 @@ LOG: smtp_connection MAIN
 Connecting to 127.0.0.1 [127.0.0.1]:1224 ... failed: Connection refused
 Connecting to ip4.ip4.ip4.ip4 [ip4.ip4.ip4.ip4]:1224 ... failed: Connection refused
 LOG: MAIN REJECT
-  H=[V4NET.0.0.3] U=root F=<uncheckable@localhost1> temporarily rejected RCPT <z@remote.domain>: Could not complete recipient verify callout
+  H=[V4NET.0.0.3] U=root F=<uncheckable@localhost1> temporarily rejected RCPT <z@remote.domain>: could not connect to ip4.ip4.ip4.ip4 [ip4.ip4.ip4.ip4]: Connection refused
 LOG: smtp_connection MAIN
   SMTP connection from root closed by QUIT
 LOG: smtp_connection MAIN

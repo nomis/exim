@@ -707,6 +707,8 @@ extern int     received_time;          /* Time the message was received */
 extern uschar *recipient_data;         /* lookup data for recipients */
 extern uschar *recipient_unqualified_hosts; /* Permitted unqualified recipients */
 extern uschar *recipient_verify_failure; /* What went wrong */
+extern uschar *recipient_verify_failure_log_message; /* Verify message for logging */
+extern uschar *recipient_verify_failure_user_message; /* Verify message for user */
 extern BOOL    recipients_discarded;   /* By an ACL */
 extern int     recipients_list_max;    /* Maximum number fitting in list */
 extern int     recipients_max;         /* Max permitted */
@@ -776,6 +778,8 @@ extern uschar *sender_rcvhost;         /* Host data for Received: */
 extern BOOL    sender_set_untrusted;   /* Sender set by untrusted caller */
 extern uschar *sender_unqualified_hosts; /* Permitted unqualified senders */
 extern uschar *sender_verify_failure;  /* What went wrong */
+extern uschar *sender_verify_failure_log_message; /* Verify message for logging */
+extern uschar *sender_verify_failure_user_message; /* Verify message for user */
 extern address_item *sender_verified_list; /* Saved chain of sender verifies */
 extern address_item *sender_verified_failed; /* The one that caused denial */
 extern uschar *sending_ip_address;     /* Address of outgoing (SMTP) interface */
