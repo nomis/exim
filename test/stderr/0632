@@ -1,0 +1,65 @@
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-rcpt@otherhost1
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-rcpt@otherhost1
+Attempting full verification using callout
+callout cache: no domain record found for otherhost1
+callout cache: no address record found for deny-rcpt@otherhost1
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP<< 250 OK
+  SMTP>> RCPT TO:<deny-rcpt@otherhost1>
+  SMTP<< 550 REJECTED
+  SMTP>> QUIT
+wrote callout cache domain record:
+  result=1 postmaster=0 random=0
+wrote negative callout cache address record
+LOG: MAIN REJECT
+  H=[V4NET.0.0.1] U=root sender verify fail for <deny-rcpt@otherhost1>: response to "RCPT TO:<deny-rcpt@otherhost1>" from 127.0.0.1 [127.0.0.1] was: 550 REJECTED
+created log directory TESTSUITE/spool/log
+LOG: MAIN REJECT
+  H=[V4NET.0.0.1] U=root F=<deny-rcpt@otherhost1> temporarily rejected RCPT <z@test.ex>: Custom defer message (Verification failed for <deny-rcpt@otherhost1>
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>
+Exim version x.yz ....
+configuration file is TESTSUITE/test-config
+trusted user
+admin user
+LOG: smtp_connection MAIN
+  SMTP connection from root
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Verifying deny-rcpt@otherhost2
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Considering deny-rcpt@otherhost2
+Attempting full verification using callout
+callout cache: no domain record found for otherhost2
+callout cache: no address record found for deny-rcpt@otherhost2
+interface=NULL port=1224
+Connecting to 127.0.0.1 [127.0.0.1]:1224 ... connected
+  SMTP<< 220 Server ready
+  SMTP>> EHLO myhost.test.ex
+  SMTP<< 250 OK
+  SMTP>> MAIL FROM:<>
+  SMTP<< 250 OK
+  SMTP>> RCPT TO:<deny-rcpt@otherhost2>
+  SMTP<< 550 REJECTED
+  SMTP>> QUIT
+wrote callout cache domain record:
+  result=1 postmaster=0 random=0
+wrote negative callout cache address record
+LOG: MAIN REJECT
+  H=[V4NET.0.0.2] U=root F=<deny-rcpt@otherhost2> temporarily rejected RCPT <z@test.ex>: Custom defer message (Verification failed for <deny-rcpt@otherhost2>
+LOG: smtp_connection MAIN
+  SMTP connection from root closed by QUIT
+>>>>>>>>>>>>>>>> Exim pid=pppp terminating with rc=0 >>>>>>>>>>>>>>>>

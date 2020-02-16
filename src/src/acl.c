@@ -184,6 +184,7 @@ enum {
 #ifdef EXPERIMENTAL_BRIGHTMAIL
   CONTROL_BMI_RUN,
 #endif
+  CONTROL_CLEAR_SENDER_VERIFY_FAILURE,
   CONTROL_DEBUG,
 #ifndef DISABLE_DKIM
   CONTROL_DKIM_VERIFY,
@@ -228,6 +229,7 @@ static uschar *controls[] = {
 #ifdef EXPERIMENTAL_BRIGHTMAIL
   US"bmi_run",
 #endif
+  US"clear_sender_verify_failure",
   US"debug",
 #ifndef DISABLE_DKIM
   US"dkim_disable_verify",
@@ -612,6 +614,8 @@ static unsigned int control_forbids[] = {
   0,                                               /* bmi_run */
 #endif
 
+  0,                                               /* clear_sender_verify_failure */
+
   0,                                               /* debug */
 
 #ifndef DISABLE_DKIM
@@ -727,6 +731,7 @@ static control_def controls_list[] = {
 #ifdef EXPERIMENTAL_BRIGHTMAIL
   { US"bmi_run",                 CONTROL_BMI_RUN,               FALSE },
 #endif
+  { US"clear_sender_verify_failure", CONTROL_CLEAR_SENDER_VERIFY_FAILURE, FALSE },
   { US"debug",                   CONTROL_DEBUG,                 TRUE },
 #ifndef DISABLE_DKIM
   { US"dkim_disable_verify",     CONTROL_DKIM_VERIFY,           FALSE },
@@ -3247,6 +3252,10 @@ for (; cb != NULL; cb = cb->next)
 
 	case CONTROL_CASELOWER_LOCAL_PART:
 	deliver_localpart = addr->lc_local_part;
+	break;
+
+	case CONTROL_CLEAR_SENDER_VERIFY_FAILURE:
+	sender_verified_failed = NULL;
 	break;
 
 	case CONTROL_ENFORCE_SYNC:
