@@ -1,0 +1,39 @@
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+451-Sender verify callout failed: 127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT TO:<deny-rcpt@otherhost1>: 550 REJECTED
+451-Custom defer message (Verification failed for <deny-rcpt@otherhost1>
+451-127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT
+451 TO:<deny-rcpt@otherhost1>: 550 REJECTED)
+221 myhost.test.ex closing connection
+220 myhost.test.ex ESMTP Exim x.yz Tue, 2 Mar 1999 09:44:33 +0000
+250 OK
+451-Custom defer message (Verification failed for <deny-rcpt@otherhost2>
+451-127.0.0.1 [127.0.0.1] : SMTP error from remote mail server after RCPT
+451 TO:<deny-rcpt@otherhost2>: 550 REJECTED)
+221 myhost.test.ex closing connection
+
+******** SERVER ********
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<deny-rcpt@otherhost1>
+550 REJECTED
+QUIT
+250 OK
+End of script
+Listening on port 1224 ... 
+Connection request from [127.0.0.1]
+220 Server ready
+EHLO myhost.test.ex
+250 OK
+MAIL FROM:<>
+250 OK
+RCPT TO:<deny-rcpt@otherhost2>
+550 REJECTED
+QUIT
+250 OK
+End of script

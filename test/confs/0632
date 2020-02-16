@@ -1,0 +1,77 @@
+# Exim test configuration 0632
+
+exim_path = EXIM_PATH
+keep_environment =
+host_lookup_order = bydns
+primary_hostname = myhost.test.ex
+spool_directory = DIR/spool
+log_file_path = DIR/spool/log/%slog
+gecos_pattern = ""
+gecos_name = CALLER_NAME
+tls_advertise_hosts =
+smtp_return_error_details = true
+
+# ----- Main settings -----
+
+domainlist local_domains = test.ex
+
+acl_smtp_rcpt = check_recipient
+
+callout_domain_negative_expire = 1h
+callout_domain_positive_expire = 1d
+callout_negative_expire = 5h
+callout_positive_expire = 1w
+
+# ----- ACL -----
+
+begin acl
+
+check_recipient:
+  warn    hosts    = V4NET.0.0.0/24
+          control  = no_warn_skipped
+          acl      = verify_sender
+
+  defer   hosts    = V4NET.0.0.1
+          message  = Custom defer message ($sender_verify_failure_user_message)
+
+  defer   hosts    = V4NET.0.0.2
+          control  = clear_sender_verify_failure
+          message  = Custom defer message ($sender_verify_failure_user_message)
+
+  accept
+
+verify_sender:
+  accept  set acl_m_verify = defer
+          verify           = sender/callout
+          set acl_m_verify = accept
+  deny    set acl_m_verify = deny
+
+
+# ----- Routers -----
+
+begin routers
+
+all:
+  driver = manualroute
+  route_list = * 127.0.0.1
+  self = send
+  transport = smtp
+
+
+# ----- Transports -----
+
+begin transports
+
+smtp:
+  driver = smtp
+  port = PORT_S
+
+
+# ----- Retry -----
+
+begin retry
+
+* * F,5d,10s
+
+
+# End
