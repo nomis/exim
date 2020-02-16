@@ -863,6 +863,7 @@ typedef struct acl_block {
   struct acl_block *next;
   acl_condition_block *condition;
   int verb;
+  int flags;
 } acl_block;
 
 /* smtp transport calc outbound_ip */

@@ -29349,6 +29349,15 @@ response to an EHLO command. Therefore, it should normally appear in an ACL
 controlled by &%acl_smtp_connect%& or &%acl_smtp_helo%&. See also
 &%pipelining_advertise_hosts%&.
 
+.new
+.vitem &*control&~=&~no_warn_skipped*&
+.cindex "&%warn%& ACL verb" "suppress log message when skipping"
+Exim normally logs an error message if processing of a &%warn%& verb is skipped
+because of a &"defer"& result. This control disables the error message for the
+current verb only. This is an alternative to disabling the &%log_selector%&
+value &%acl_warn_skipped%&.
+.wen
+
 .vitem &*control&~=&~queue_only*&
 .oindex "&%queue_only%&"
 .cindex "queueing incoming messages"
