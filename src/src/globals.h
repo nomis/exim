@@ -828,6 +828,8 @@ extern struct timeval received_time_taken; /* Interval the message took to be re
 extern uschar *recipient_data;         /* lookup data for recipients */
 extern uschar *recipient_unqualified_hosts; /* Permitted unqualified recipients */
 extern uschar *recipient_verify_failure; /* What went wrong */
+extern uschar *recipient_verify_failure_log_message; /* Verify message for logging */
+extern uschar *recipient_verify_failure_user_message; /* Verify message for user */
 extern int     recipients_list_max;    /* Maximum number fitting in list */
 extern int     recipients_max;         /* Max permitted */
 extern BOOL    recipients_max_reject;  /* If TRUE, reject whole message */
@@ -895,6 +897,8 @@ extern uschar *sender_rate_period;     /* Configured smoothing period */
 extern uschar *sender_rcvhost;         /* Host data for Received: */
 extern uschar *sender_unqualified_hosts; /* Permitted unqualified senders */
 extern uschar *sender_verify_failure;  /* What went wrong */
+extern uschar *sender_verify_failure_log_message; /* Verify message for logging */
+extern uschar *sender_verify_failure_user_message; /* Verify message for user */
 extern address_item *sender_verified_list; /* Saved chain of sender verifies */
 extern address_item *sender_verified_failed; /* The one that caused denial */
 extern uschar *sending_ip_address;     /* Address of outgoing (SMTP) interface */

@@ -1,0 +1,116 @@
+# Exim test configuration 0630
+
+exim_path = EXIM_PATH
+keep_environment =
+host_lookup_order = bydns
+primary_hostname = myhost.test.ex
+spool_directory = DIR/spool
+log_file_path = DIR/spool/log/%slog
+gecos_pattern = ""
+gecos_name = CALLER_NAME
+tls_advertise_hosts =
+
+# ----- Main settings -----
+
+domainlist local_domains = test.ex
+
+acl_smtp_rcpt = check_recipient
+
+callout_domain_negative_expire = 1h
+callout_domain_positive_expire = 1d
+callout_negative_expire = 5h
+callout_positive_expire = 1w
+
+CALLOUT_CONNECT = 30s
+CALLOUT_MAXWAIT = 30s
+
+# ----- ACL -----
+
+begin acl
+
+check_recipient:
+  warn    hosts    = V4NET.0.0.1
+          control  = no_warn_skipped
+          acl      = verify_sender
+
+  warn    hosts    = V4NET.0.0.2
+          control  = no_warn_skipped
+          acl      = verify_sender_postmaster
+
+  warn    hosts    = V4NET.0.0.3
+          control  = no_warn_skipped
+          acl      = verify_sender_fullpostmaster
+
+  warn    hosts    = V4NET.0.0.4
+          control  = no_warn_skipped
+          acl      = verify_sender_random
+
+  warn    hosts    = V4NET.0.0.0/24
+          logwrite = ------------------------------------------------------------
+          logwrite = sender_address=$sender_address
+          logwrite = acl_m_verify=$acl_m_verify
+          logwrite = sender_verify_failure=$sender_verify_failure
+          logwrite = sender_verify_failure_log_message=$sender_verify_failure_log_message
+          logwrite = sender_verify_failure_user_message=$sender_verify_failure_user_message
+
+  accept
+
+verify_sender:
+  accept  set acl_m_verify = defer
+          verify           = sender/callout=1s,connect=CALLOUT_CONNECT,maxwait=CALLOUT_MAXWAIT
+          set acl_m_verify = accept
+  deny    set acl_m_verify = deny
+
+verify_sender_postmaster:
+  accept  set acl_m_verify = postmaster_defer
+          verify           = sender/callout=1s,postmaster
+          set acl_m_verify = postmaster_accept
+  deny    set acl_m_verify = postmaster_deny
+
+verify_sender_fullpostmaster:
+  accept  set acl_m_verify = fullpostmaster_defer
+          verify           = sender/callout=1s,fullpostmaster
+          set acl_m_verify = fullpostmaster_accept
+  deny    set acl_m_verify = fullpostmaster_deny
+
+verify_sender_random:
+  accept  set acl_m_verify = random_defer
+          verify           = sender/callout=1s,random
+          set acl_m_verify = random_accept
+  deny    set acl_m_verify = random_deny
+
+# ----- Routers -----
+
+begin routers
+
+fail:
+  driver = manualroute
+  domains = no.route
+  route_list = other 127.0.0.1
+  transport = smtp
+  no_more
+
+all:
+  driver = manualroute
+  route_list = * 127.0.0.1
+  self = send
+  transport = smtp
+
+
+# ----- Transports -----
+
+begin transports
+
+smtp:
+  driver = smtp
+  port = PORT_S
+
+
+# ----- Retry -----
+
+begin retry
+
+* * F,5d,10s
+
+
+# End
