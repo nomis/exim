@@ -366,6 +366,7 @@ enum {
 #endif
   CONTROL_NO_MULTILINE,
   CONTROL_NO_PIPELINING,
+  CONTROL_NO_WARN_SKIPPED,
 
   CONTROL_QUEUE,
   CONTROL_SUBMISSION,
@@ -502,6 +503,8 @@ static control_def controls_list[] = {
   { US"no_pipelining",           FALSE,
 	  ACL_BIT_NOTSMTP | ACL_BIT_NOTSMTP_START
   },
+[CONTROL_NO_WARN_SKIPPED] =
+  { US"no_warn_skipped",         FALSE, 0 },
 
 [CONTROL_QUEUE] =
   { US"queue",			TRUE,
@@ -529,6 +532,10 @@ static control_def controls_list[] = {
   }
 #endif
 };
+
+/* Flags applicable to processing of the current verb. */
+
+enum { ACLF_NO_WARN_SKIPPED };
 
 /* Support data structures for Client SMTP Authorization. acl_verify_csa()
 caches its result in a tree to avoid repeated DNS queries. The result is an
@@ -785,6 +792,7 @@ while ((s = (*func)()) != NULL)
     this->verb = v;
     this->srcline = config_lineno;	/* for debug output */
     this->srcfile = config_filename;	/**/
+    this->flags = 0;
     condp = &(this->condition);
     if (*s == 0) continue;               /* No condition on this line */
     if (*s == '!')
@@ -2848,7 +2856,7 @@ Returns:       OK        - all conditions are met
 static int
 acl_check_condition(int verb, acl_condition_block *cb, int where,
   address_item *addr, int level, BOOL *epp, uschar **user_msgptr,
-  uschar **log_msgptr, int *basic_errno)
+  uschar **log_msgptr, int *basic_errno, int *flags)
 {
 uschar *user_message = NULL;
 uschar *log_message = NULL;
@@ -3128,6 +3136,10 @@ for (; cb; cb = cb->next)
 	case CONTROL_NO_CALLOUT_FLUSH:
 	  f.disable_callout_flush = TRUE;
 	  break;
+
+	case CONTROL_NO_WARN_SKIPPED:
+	*flags |= (1 << ACLF_NO_WARN_SKIPPED);
+	break;
 
 	case CONTROL_FAKEREJECT:
 	  cancel_cutthrough_connection(TRUE, US"fakereject");
@@ -4085,7 +4097,7 @@ while (acl)
 
   search_error_message = NULL;
   cond = acl_check_condition(acl->verb, acl->condition, where, addr, acl_level,
-    &endpass_seen, user_msgptr, log_msgptr, &basic_errno);
+    &endpass_seen, user_msgptr, log_msgptr, &basic_errno, &acl->flags);
 
   /* Handle special returns: DEFER causes a return except on a WARN verb;
   ERROR always causes a return. */
@@ -4210,7 +4222,8 @@ while (acl)
     case ACL_WARN:
       if (cond == OK)
 	acl_warn(where, *user_msgptr, *log_msgptr);
-      else if (cond == DEFER && LOGGING(acl_warn_skipped))
+      else if (cond == DEFER && LOGGING(acl_warn_skipped)
+               && (acl->flags & (1 << ACLF_NO_WARN_SKIPPED)) == 0)
 	log_write(0, LOG_MAIN, "%s Warning: ACL \"warn\" statement skipped: "
 	  "condition test deferred%s%s", host_and_ident(TRUE),
 	  (*log_msgptr == NULL)? US"" : US": ",
