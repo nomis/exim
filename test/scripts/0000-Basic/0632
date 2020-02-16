@@ -1,0 +1,36 @@
+# callout verification (defer message handling)
+need_ipv4
+# Test reject (RCPT) with built-in reject details and custom message
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+550 REJECTED
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.1
+MAIL FROM:<deny-rcpt@otherhost1>
+RCPT TO:<z@test.ex>
+QUIT
+****
+# Test reject (RCPT) with custom message but without built-in reject details
+server PORT_S
+220 Server ready
+EHLO
+250 OK
+MAIL FROM
+250 OK
+RCPT TO
+550 REJECTED
+QUIT
+250 OK
+****
+sudo exim -d-all+verify -v -bs -oMa V4NET.0.0.2
+MAIL FROM:<deny-rcpt@otherhost2>
+RCPT TO:<z@test.ex>
+QUIT
+****

@@ -30527,6 +30527,17 @@ warn  control = caseful_local_part
 Notice that we put back the lower cased version afterwards, assuming that
 is what is wanted for subsequent tests.
 
+.new
+.vitem &*control&~=&~clear_sender_verify_failure*&
+.cindex "&ACL;" "clear a previous sender verify failure"
+Exim normally stores the result of a sender verify failure and prepends it to
+the next temporary reject message if &%smtp_return_error_details%& is set.
+This control immediately clears the current sender verify failure detail. It
+does not modify any variables relating to verification which can still be used
+to provide custom messages for sender verify failures. This is an alternative
+to disabling the &%smtp_return_error_details%& option when using custom
+response messages.
+.wen
 
 .vitem &*control&~=&~cutthrough_delivery/*&<&'options'&>
 .cindex "&ACL;" "cutthrough routing"

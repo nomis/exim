@@ -342,6 +342,7 @@ enum {
 #endif
   CONTROL_CASEFUL_LOCAL_PART,
   CONTROL_CASELOWER_LOCAL_PART,
+  CONTROL_CLEAR_SENDER_VERIFY_FAILURE,
   CONTROL_CUTTHROUGH_DELIVERY,
   CONTROL_DEBUG,
 #ifndef DISABLE_DKIM
@@ -403,6 +404,8 @@ static control_def controls_list[] = {
   { US"caseful_local_part",      FALSE, (unsigned) ~ACL_BIT_RCPT },
 [CONTROL_CASELOWER_LOCAL_PART] =
   { US"caselower_local_part",    FALSE, (unsigned) ~ACL_BIT_RCPT },
+[CONTROL_CLEAR_SENDER_VERIFY_FAILURE] =
+  { US"clear_sender_verify_failure", FALSE,	0 },
 [CONTROL_CUTTHROUGH_DELIVERY] =
   { US"cutthrough_delivery",     TRUE,		0 },
 [CONTROL_DEBUG] =
@@ -3106,6 +3109,10 @@ for (; cb; cb = cb->next)
 	case CONTROL_CASELOWER_LOCAL_PART:
 	  deliver_localpart = addr->lc_local_part;
 	  break;
+
+	case CONTROL_CLEAR_SENDER_VERIFY_FAILURE:
+	sender_verified_failed = NULL;
+	break;
 
 	case CONTROL_ENFORCE_SYNC:
 	  smtp_enforce_sync = TRUE;
